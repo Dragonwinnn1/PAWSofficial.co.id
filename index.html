@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PAWS — Streetwear Collective</title>
+  <meta name="description" content="PAWS Streetwear — Quality streetwear. Shop tees, hoodies, jackets & accessories." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a class="brand" href="#" aria-label="PAWS home" id="brand-link">
+        <svg class="logo" viewBox="0 0 120 28" width="120" height="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="6" y="20" fill="#0a7a53" font-family="Inter, sans-serif" font-weight="800" font-size="18">PAWS</text>
+        </svg>
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Main">
+        <button class="nav-btn" id="btn-newdrop">NEW DROP</button>
+        <button class="nav-btn" id="btn-sale">SALE</button>
+        <button class="nav-btn" id="btn-collection">ALL</button>
+        <button class="nav-btn" id="btn-article">ARTIKEL</button>
+      </nav>
+
+      <div class="header-actions" role="group" aria-label="Header actions">
+        <button id="btn-wishlist" class="icon-btn" title="Wishlist" aria-label="Wishlist">♡ <span id="wishlist-count">0</span></button>
+        <button id="btn-cart" class="cart-btn" title="Keranjang" aria-label="Cart">🛒 <span id="cart-count">0</span></button>
+        <button id="btn-account" class="icon-btn" title="Akun">👤</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero-banner" aria-label="Hero banner">
+        <div id="banner-container" class="banner-container">
+            </div>
+        <button id="banner-prev" class="banner-nav prev" aria-label="Previous banner">❮</button>
+        <button id="banner-next" class="banner-nav next" aria-label="Next banner">❯</button>
+    </section>
+    <section id="collection" class="collection section" aria-labelledby="collection-title">
+      <div class="collection-inner">
+        <h2 id="collection-title">NEW DROP</h2>
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="article" class="section article-section" style="display:none">
+      <div class="article-inner">
+        <h2>Kenapa Streetwear Masih Relevan?</h2>
+        <p>Dari subkultur ke runway — longform konten brand Anda di sini. Tambahkan gambar lookbook dan editorial untuk SEO & trust.</p>
+        <img src="hero-distro.jpg" alt="Artikel image" style="width:100%;max-width:900px;border-radius:10px" loading="lazy"/>
+        <p>Konten editorial meningkatkan brand authority dan SEO.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <strong>PAWS</strong>
+        <p>KUALITAS BERANI — Est. <span id="year"></span></p>
+      </div>
+      <div class="footer-links">
+        <a href="#">FAQ</a>
+        <a href="#">Syarat & Ketentuan</a>
+        <a href="#">Kontak</a>
+      </div>
+    </div>
+    <small>&copy; <span id="year-copy"></span> PAWS — All rights reserved.</small>
+  </footer>
+
+  <div id="modal-product" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <button class="modal-close" id="close-product-modal" aria-label="Close product modal">×</button>
+      <div id="modal-content" class="modal-content-inner"></div>
+    </div>
+  </div>
+
+  <div id="modal-cart" class="modal" aria-hidden="true" role="dialog" aria-labelledby="cart-title">
+    <div class="modal-card">
+      <button class="modal-close" id="close-cart-modal" aria-label="Close cart">×</button>
+      <h3 id="cart-title">Keranjang Anda</h3>
+      <div id="cart-contents"></div>
+      <div class="cart-summary">
+        <div>Subtotal: <span id="cart-subtotal">Rp 0</span></div>
+        <div>Estimasi Ongkir: <span id="cart-shipping">Rp 0</span></div>
+        <div class="cart-total">Total: <span id="cart-total">Rp 0</span></div>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-checkout" class="btn-primary">Checkout</button>
+        <button id="btn-clear-cart" class="btn-ghost">Kosongkan Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-wishlist" class="modal" aria-hidden="true" role="dialog" aria-labelledby="wishlist-title">
+    <div class="modal-card">
+      <button class="modal-close" id="close-wishlist-modal" aria-label="Close wishlist">×</button>
+      <h3 id="wishlist-title">Wishlist Anda</h3>
+      <div id="wishlist-contents" style="min-height:120px;padding:10px;color:#6b7280"></div>
+      <div class="modal-actions">
+        <button id="btn-wishlist-clear" class="btn-ghost">Kosongkan Wishlist</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-checkout" class="modal" aria-hidden="true" role="dialog" aria-labelledby="checkout-title">
+    <div class="modal-card">
+      <button class="modal-close" id="close-checkout-modal" aria-label="Close checkout">×</button>
+      <h3 id="checkout-title">Form Checkout</h3>
+      <form id="checkout-form" class="checkout-form">
+        <label>Nama Lengkap <input id="cf-name" required /></label>
+        <label>Alamat Lengkap <textarea id="cf-address" rows="2" required></textarea></label>
+        <label>No. HP <input id="cf-phone" required placeholder="08xxxxxxxx"/></label>
+        <label>Metode Pembayaran
+          <select id="cf-payment">
+            <option value="transfer-bank">Transfer Bank</option>
+            <option value="cod">Bayar di Tempat (COD)</option>
+            <option value="e-wallet">E-Wallet</option>
+          </select>
+        </label>
+        <label>Kirim Pesanan Via
+          <select id="cf-delivery">
+            <option value="wa">WhatsApp</option>
+            <option value="telegram">Telegram</option>
+          </select>
+        </label>
+        <div class="checkout-note">
+          <small>Setelah submit, Anda akan dialihkan ke aplikasi yang dipilih dengan format pesanan otomatis. Anda juga dapat menyalin teks order.</small>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn-primary">Kirim Pesanan</button>
+          <button type="button" id="btn-copy-order" class="btn-ghost">Salin Teks</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-login" class="modal" aria-hidden="true" role="dialog" aria-labelledby="login-title">
+    <div class="modal-card">
+      <button class="modal-close" id="close-login-modal" aria-label="Close login">×</button>
+      <h3 id="login-title">Masuk / Daftar</h3>
+      <form id="login-form" class="login-form">
+        <label>Email <input id="login-email" type="email" required placeholder="email@domain.com"/></label>
+        <label>Nama Tampilan <input id="login-name" required/></label>
+        <div class="modal-actions">
+          <button type="submit" class="btn-primary">Simpan</button>
+          <button id="btn-logout" type="button" class="btn-ghost" style="display:none">Logout</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="floating">
+    <a href="https://wa.me/6281234567890" target="_blank" aria-label="WhatsApp" class="float-wa">WA</a>
+    <a href="https://t.me/paws_streetwear" target="_blank" aria-label="Telegram" class="float-telegram">TG</a>
+    <a href="https://instagram.com/pawsstreetwear" target="_blank" aria-label="Instagram" class="float-ig">IG</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
