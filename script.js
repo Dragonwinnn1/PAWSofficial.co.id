@@ -9,8 +9,8 @@
  */
 
 /* ========== CONFIG ========== */
-const WHATSAPP_NUMBER = "6281234567890"; // GANTI NOMOR ANDA
-const TELEGRAM_USERNAME = "paws_streetwear"; // GANTI USERNAME TELEGRAM ANDA (tanpa '@')
+const WHATSAPP_NUMBER = "6287785981177"; // GANTI NOMOR ANDA
+const TELEGRAM_USERNAME = "pawsfck"; // GANTI USERNAME TELEGRAM ANDA (tanpa '@')
 const FREE_SHIPPING_THRESHOLD = 500000;
 const SHIPPING_FLAT = 20000;
 
@@ -499,3 +499,4 @@ function boot(){
 }
 
 boot();
+
