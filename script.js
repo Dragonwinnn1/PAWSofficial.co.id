@@ -17,9 +17,9 @@ const SHIPPING_FLAT = 20000;
 // === DATA BARU UNTUK BANNER CAROUSEL ===
 const BANNERS = [
   // Pastikan Anda memiliki file gambar ini: hero-distro.jpg, banner-new-promo.jpg, banner-outfit.jpg
-  { img: "file:///C:/Users/YTC%20COMPUTER/Documents/Lightshot/Screenshot_2.png", alt: "PAWS Banner - T-Shirt Collection", link: "#" },
-  { img: "file:///C:/Users/YTC%20COMPUTER/Documents/Lightshot/Screenshot_3.png", alt: "Special Promo: Free Sticker Pack", link: "#" },
-  { img: "file:///C:/Users/YTC%20COMPUTER/Documents/Lightshot/Screenshot_4.png", alt: "Lookbook - Casual Outfit Idea", link: "#" }
+  { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/Screenshot_2.png?raw=true", alt: "PAWS Banner - T-Shirt Collection", link: "#" },
+  { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/Screenshot_3.png?raw=true", alt: "Special Promo: Free Sticker Pack", link: "#" },
+  { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/Screenshot_4.png?raw=true", alt: "Lookbook - Casual Outfit Idea", link: "#" }
 ];
 // ========================================
 
@@ -497,4 +497,5 @@ function boot(){
   // ESC closes modals
   window.addEventListener("keydown", (e)=>{ if(e.key === "Escape"){ [modalProduct,modalCart,modalCheckout,modalLogin,modalWishlist].forEach(m=>m && (m.style.display="none")); }});
 }
+
 boot();
