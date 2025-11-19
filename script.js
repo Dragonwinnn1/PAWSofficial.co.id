@@ -18,9 +18,9 @@ const SHIPPING_FLAT = 20000;
 
 // === DATA BARU UNTUK BANNER CAROUSEL ===
 const BANNERS = [
-  { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/QQ2.JPG?raw=true", alt: "PAWS Banner - T-Shirt Collection", link: "#" },
-  { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/QQ3.JPG?raw=true", alt: "Special Promo: Free Sticker Pack", link: "#" },
-  { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/Screenshot_6.png?raw=true", alt: "Lookbook - Casual Outfit Idea", link: "#" }
+  { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/1.png?raw=true", alt: "PAWS Banner - T-Shirt Collection", link: "#" },
+  { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/2.png?raw=true", alt: "Special Promo: Free Sticker Pack", link: "#" },
+  { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/3.png?raw=true", alt: "Lookbook - Casual Outfit Idea", link: "#" }
 ];
 // ========================================
 
@@ -777,6 +777,7 @@ function boot(){
 }
 
 boot();
+
 
 
 
