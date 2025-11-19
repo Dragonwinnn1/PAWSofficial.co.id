@@ -27,10 +27,10 @@ const BANNERS = [
 /* ========== SAMPLE PRODUCTS (Default Data) ========== */
 // Produk awal ini hanya akan digunakan jika tidak ada data 'paws_products' di localStorage.
 const PRODUCTS = [
-  { id: "p1", name: "Urban Mischief Tee", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU1.jpg?raw=true"], category: ["kaos","new-drop"], description: "Cotton Combed 30s. Regular Fit.", variants: { S: 10, M: 10, L: 10, XL: 10 } },
+  { id: "p1", name: "SKATEGRAFFITI", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU1.jpg?raw=true"], category: ["kaos","new-drop"], description: "Cotton Combed 30s. Regular Fit.", variants: { S: 10, M: 10, L: 10, XL: 10 } },
   { id: "p2", name: "Black & White Anarchy Hoodie", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU2.jpg?raw=true"], category: ["jaket","sale"], description: "Fleece 280gsm. Oversize Fit.", variants: { S: 10, M: 10, L: 10, XL: 10 } },
-  { id: "p3", name: "Cargo Pants Black V3", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU3.jpg?raw=true"], category: ["celana","new-drop"], description: "Twill premium. Slim tapered.", variants: { S: 10, M: 10, L: 10, XL: 10 } },
-  { id: "p4", name: "Snapback Original", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/QQ7.PNG?raw=true"], category: ["aksesoris","new-drop"], description: "Polyester drill. Adjustable strap.", variants: { S: 10, M: 10, L: 10, XL: 10 } } 
+  { id: "p3", name: "CLASSIC LOGO", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU3.jpg?raw=true"], category: ["celana","new-drop"], description: "Twill premium. Slim tapered.", variants: { S: 10, M: 10, L: 10, XL: 10 } },
+  { id: "p4", name: "ARABIC LOGO", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/QQ7.PNG?raw=true"], category: ["aksesoris","new-drop"], description: "Polyester drill. Adjustable strap.", variants: { S: 10, M: 10, L: 10, XL: 10 } } 
 ];
 
 /* ========== STATE ========== */
@@ -777,6 +777,7 @@ function boot(){
 }
 
 boot();
+
 
 
 
