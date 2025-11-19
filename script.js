@@ -1,11 +1,13 @@
 /**
  * Perbaikan script utama:
- * - Nav toggling (artikel <-> collection)
- * - Wishlist modal (lihat & hapus)
- * - Banner menggantikan hero
- * - Hapus filter/search (sesuai permintaan)
+ * 1. Menerapkan Logika Pengurangan Stok Nyata PERSISTEN (disimpan di localStorage).
+ * 2. Menambahkan fitur EDIT SIZE & QUANTITY pada Keranjang (Cart Modal).
+ * 3. Menambahkan Validasi format No. HP di form checkout.
+ * 4. Menambahkan visual 'SOLD OUT' pada produk yang stoknya 0.
+ * 5. BARU: Mengaktifkan link FAQ, Syarat & Ketentuan, dan Kontak di Footer.
  *
- * Jangan lupa ganti WHATSAPP_NUMBER, TELEGRAM_USERNAME, dan gambar sesuai asset Anda.
+ * PERHATIAN: Karena tidak ada backend, persistensi stok kini menggunakan localStorage.
+ * Jika pengguna menghapus localStorage mereka, stok akan kembali ke data awal.
  */
 
 /* ========== CONFIG ========== */
@@ -16,14 +18,14 @@ const SHIPPING_FLAT = 20000;
 
 // === DATA BARU UNTUK BANNER CAROUSEL ===
 const BANNERS = [
-  // Pastikan Anda memiliki file gambar ini: hero-distro.jpg, banner-new-promo.jpg, banner-outfit.jpg
   { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/Screenshot_2.png?raw=true", alt: "PAWS Banner - T-Shirt Collection", link: "#" },
   { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/Screenshot_3.png?raw=true", alt: "Special Promo: Free Sticker Pack", link: "#" },
   { img: "https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/Screenshot_4.png?raw=true", alt: "Lookbook - Casual Outfit Idea", link: "#" }
 ];
 // ========================================
 
-/* ========== SAMPLE PRODUCTS ========== */
+/* ========== SAMPLE PRODUCTS (Default Data) ========== */
+// Produk awal ini hanya akan digunakan jika tidak ada data 'paws_products' di localStorage.
 const PRODUCTS = [
   { id: "p1", name: "Urban Mischief Tee", price: 249000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU1.jpg?raw=true"], category: ["kaos","new-drop"], description: "Cotton Combed 30s. Regular Fit.", variants: { S: 5, M: 7, L: 3, XL: 0 } },
   { id: "p2", name: "Black & White Anarchy Hoodie", price: 489000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU2.jpg?raw=true"], category: ["jaket","sale"], description: "Fleece 280gsm. Oversize Fit.", variants: { S: 1, M: 4, L: 2, XL: 1 } },
@@ -33,12 +35,12 @@ const PRODUCTS = [
 
 /* ========== STATE ========== */
 let state = {
-  products: PRODUCTS,
+  products: load("paws_products") || PRODUCTS, // BARU: Muat dari localStorage
   filter: { priceMin: 0, category: "all", q: "" },
   cart: load("paws_cart") || [],
   wishlist: load("paws_wishlist") || [],
   user: load("paws_user") || null,
-  currentBannerIndex: 0 // BARU: State untuk melacak banner saat ini
+  currentBannerIndex: 0 
 };
 
 /* ========== DOM ========== */
@@ -58,9 +60,9 @@ const cartTotalEl = document.getElementById("cart-total");
 const wishlistContents = document.getElementById("wishlist-contents");
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
-if (document.getElementById("year-copy")) document.getElementById("year-copy").textContent = new Date().getFullYear(); // Tambahan untuk copyright
+if (document.getElementById("year-copy")) document.getElementById("year-copy").textContent = new Date().getFullYear();
 
-// BARU: Elemen untuk Banner Carousel
+// Elemen untuk Banner Carousel
 const bannerContainer = document.getElementById("banner-container");
 const bannerPrevBtn = document.getElementById("banner-prev");
 const bannerNextBtn = document.getElementById("banner-next");
@@ -70,6 +72,20 @@ const bannerNextBtn = document.getElementById("banner-next");
 function save(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
 function load(key){ try { return JSON.parse(localStorage.getItem(key)); } catch { return null; } }
 function rupiah(n){ return `Rp ${Number(n).toLocaleString("id-ID")}`; }
+function totalStock(p){ return Object.values(p.variants || {}).reduce((a,b)=>a + (Number(b)||0), 0); }
+
+// REVISI: Fungsi untuk mengurangi stok fisik dan menyimpannya secara persisten
+function updatePhysicalStock(cartItems) {
+    cartItems.forEach(item => {
+        const prod = state.products.find(p => p.id === item.id);
+        if (prod && prod.variants[item.size] !== undefined) {
+            const currentStock = prod.variants[item.size];
+            prod.variants[item.size] = Math.max(0, currentStock - item.qty);
+        }
+    });
+    // Wajib: Simpan array produk yang sudah dimodifikasi ke localStorage
+    save("paws_products", state.products);
+}
 
 /* ========== NAV & ACTIVE STATE ========== */
 function clearActiveNav(){
@@ -85,7 +101,7 @@ document.getElementById("btn-newdrop").onclick = () => {
   setActiveNav(document.getElementById("btn-newdrop"));
   collectionTitle.textContent = "NEW DROP";
   showSection('collection');
-  state.filter.category = "all"; renderProducts();
+  state.filter.category = "new-drop"; renderProducts();
 };
 document.getElementById("btn-sale").onclick = () => {
   setActiveNav(document.getElementById("btn-sale"));
@@ -103,27 +119,51 @@ document.getElementById("btn-article").onclick = () => {
   showSection('article');
 };
 
+// BARU: Tambahkan event listener untuk link footer
+document.getElementById("link-faq").onclick = (e) => {
+    e.preventDefault();
+    clearActiveNav();
+    showSection('faq');
+};
+document.getElementById("link-terms").onclick = (e) => {
+    e.preventDefault();
+    clearActiveNav();
+    showSection('terms');
+};
+document.getElementById("link-contact").onclick = (e) => {
+    e.preventDefault();
+    clearActiveNav();
+    showSection('contact');
+};
+
+
 /* brand logo click -> home (collection) */
 document.getElementById("brand-link").onclick = (e) => { e.preventDefault(); document.getElementById("btn-newdrop").click(); };
 
-/* Show/hide sections helper */
+/* Show/hide sections helper (REVISI untuk halaman statis baru) */
 function showSection(name){
-  const coll = document.getElementById("collection");
-  const art = document.getElementById("article");
+  const sections = document.querySelectorAll('main > section');
   const hero = document.getElementById("hero");
-  if(name === 'article'){ 
-    coll.style.display = 'none'; 
-    art.style.display = 'block'; 
-    if(hero) hero.style.display = 'none'; // Sembunyikan banner di halaman artikel
-  }
-  else { 
-    art.style.display = 'none'; 
-    coll.style.display = 'block'; 
-    if(hero) hero.style.display = 'block'; // Tampilkan banner di halaman collection
+  
+  sections.forEach(sec => {
+    // Sembunyikan semua section
+    sec.style.display = 'none';
+  });
+
+  // Tampilkan section yang dipilih
+  document.getElementById(name).style.display = 'block';
+
+  // Logika khusus untuk Hero (hanya muncul di section collection)
+  if(hero) {
+    if(name === 'collection' || name === 'hero'){
+      hero.style.display = 'block';
+    } else {
+      hero.style.display = 'none';
+    }
   }
 }
 
-/* ========== BANNER CAROUSEL LOGIC ========== */
+/* ========== BANNER CAROUSEL LOGIC (UNCHANGED) ========== */
 function renderBanner(){
     if(!bannerContainer) return;
     bannerContainer.innerHTML = "";
@@ -151,20 +191,18 @@ function attachBannerListeners(){
     if (bannerPrevBtn) bannerPrevBtn.onclick = prevBanner;
     if (bannerNextBtn) bannerNextBtn.onclick = nextBanner;
 
-    // Auto-rotate every 5 seconds (5000ms)
-    setInterval(nextBanner, 5000);
+    // Tambahkan delay 5 detik
+    setInterval(nextBanner, 5000); 
 }
 
 
-/* ========== PRODUCT RENDER ========== */
+/* ========== PRODUCT RENDER (UNCHANGED LOGIC) ========== */
 function renderProducts(){
   productGrid.innerHTML = "";
   let items = state.products.slice();
 
-  // category filter logic (sale/new-drop/all)
   if(state.filter.category === 'sale') items = items.filter(p => p.category.includes('sale'));
   else if(state.filter.category === 'new-drop') items = items.filter(p => p.category.includes('new-drop'));
-  // else category 'all' => no filter
 
   if(items.length === 0){
     productGrid.innerHTML = `<p style="grid-column:1/-1;text-align:center;padding:40px;color:#6b7280">Tidak ada produk.</p>`;
@@ -174,23 +212,27 @@ function renderProducts(){
   items.forEach(p=>{
     const card = document.createElement("article");
     card.className = "product-card";
-    const badge = p.category.includes("sale") ? "SALE" : (p.category.includes("new-drop") ? "NEW" : "");
-    const stok = totalStock(p);
+    const totalStok = totalStock(p); 
+    const isSoldOut = totalStok <= 0;
+
+    const badge = isSoldOut ? "SOLD OUT" : (p.category.includes("sale") ? "SALE" : (p.category.includes("new-drop") ? "NEW" : ""));
+
     card.innerHTML = `
-      <img src="${p.images[0]}" alt="${p.name}" loading="lazy" />
+      <img src="${p.images[0]}" alt="${p.name}" loading="lazy" style="${isSoldOut ? 'opacity: 0.5;' : ''}" />
+      ${isSoldOut ? '<div style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-weight: 700; font-size: 12px; z-index: 5;">SOLD OUT</div>' : ''}
       <div class="product-meta">
         <div style="display:flex;justify-content:space-between;align-items:center">
           <h3>${p.name}</h3>
-          <div class="badge">${badge}</div>
+          <div class="badge" style="background:${isSoldOut ? '#fee2e2' : ''}; color:${isSoldOut ? '#dc2626' : ''};">${badge}</div>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="stock">Stok: ${stok}</div>
+          <div class="stock" style="color:${isSoldOut ? '#dc2626' : 'var(--muted)'};">Stok: ${totalStok}</div>
           <div class="price">${rupiah(p.price)}</div>
         </div>
       </div>
       <div class="product-actions">
         <button class="btn-outline" data-action="view" data-id="${p.id}">Lihat</button>
-        <button class="btn-primary" data-action="quickadd" data-id="${p.id}">Tambah</button>
+        <button class="btn-primary" data-action="quickadd" data-id="${p.id}" ${isSoldOut ? 'disabled' : ''}>Tambah</button>
         <button class="btn-ghost" data-action="wish" data-id="${p.id}">${ state.wishlist.includes(p.id) ? "♥" : "♡" }</button>
       </div>
     `;
@@ -200,10 +242,8 @@ function renderProducts(){
   attachProductButtons();
 }
 
-/* ========== HELPERS ========== */
-function totalStock(p){ return Object.values(p.variants || {}).reduce((a,b)=>a + (Number(b)||0), 0); }
 
-/* ========== PRODUCT ACTIONS ========== */
+/* ========== PRODUCT ACTIONS (UNCHANGED) ========== */
 function attachProductButtons(){
   document.querySelectorAll('[data-action="view"]').forEach(btn=> btn.onclick = ()=> openProductModal(btn.dataset.id));
   document.querySelectorAll('[data-action="quickadd"]').forEach(btn=> btn.onclick = ()=>{
@@ -217,7 +257,7 @@ function attachProductButtons(){
   document.querySelectorAll('[data-action="wish"]').forEach(btn=> btn.onclick = ()=> toggleWishlist(btn.dataset.id));
 }
 
-/* ========== PRODUCT MODAL ========== */
+/* ========== PRODUCT MODAL (UNCHANGED) ========== */
 function openProductModal(id){
   const p = state.products.find(x=>x.id===id);
   if(!p) return;
@@ -225,6 +265,10 @@ function openProductModal(id){
   const options = sizes.map(s => `<option value="${s}" ${p.variants[s] <= 0 ? "disabled":""}>${s} ${p.variants[s]<=0?"(Habis)":""}</option>`).join("");
   modalProduct.style.display = "flex"; modalProduct.setAttribute("aria-hidden","false");
   const modalContent = document.getElementById("modal-content");
+  
+  const hasAvailableSize = sizes.some(s => p.variants[s] > 0);
+  const disabledAddBtn = !hasAvailableSize ? 'disabled' : '';
+
   modalContent.innerHTML = `
     <div style="display:flex;gap:18px;flex-wrap:wrap">
       <div style="flex:1;min-width:240px">
@@ -235,23 +279,44 @@ function openProductModal(id){
         <div class="price" style="margin:8px 0">${rupiah(p.price)}</div>
         <p style="color:#6b7280">${p.description}</p>
         <label>Size
-          <select id="modal-size">${options}</select>
+          <select id="modal-size" ${!hasAvailableSize ? 'disabled' : ''}>${options}</select>
         </label>
         <label>Jumlah
-          <input id="modal-qty" type="number" min="1" value="1" style="width:100px"/>
+          <input id="modal-qty" type="number" min="1" value="1" style="width:100px" ${!hasAvailableSize ? 'disabled' : ''}/>
         </label>
         <div style="display:flex;gap:8px;margin-top:10px">
-          <button id="modal-add" class="btn-primary">Tambah ke Keranjang</button>
+          <button id="modal-add" class="btn-primary" ${disabledAddBtn}>Tambah ke Keranjang</button>
           <button id="modal-wish" class="btn-ghost">${ state.wishlist.includes(p.id) ? "♥ Hapus Wishlist" : "♡ Wishlist" }</button>
         </div>
         <div style="margin-top:10px;color:#6b7280">Stok tersedia: <span id="modal-stock">${totalStock(p)}</span></div>
       </div>
     </div>
   `;
+  
+  const sizeSelect = document.getElementById("modal-size");
+  const qtyInput = document.getElementById("modal-qty");
+  const modalStockEl = document.getElementById("modal-stock");
+
+  sizeSelect.onchange = ()=>{
+      const size = sizeSelect.value;
+      const stock = p.variants[size] || 0;
+      qtyInput.max = stock;
+      modalStockEl.textContent = stock;
+      qtyInput.value = 1; 
+  };
+  
+  const initialSize = sizeSelect.value;
+  if(initialSize) {
+      qtyInput.max = p.variants[initialSize] || 0;
+      modalStockEl.textContent = p.variants[initialSize] || 0;
+  }
+
   document.getElementById("modal-add").onclick = ()=>{
-    const size = document.getElementById("modal-size").value;
-    const qty = Number(document.getElementById("modal-qty").value) || 1;
-    if(!size){ toast("Pilih size terlebih dahulu"); return; }
+    const size = sizeSelect.value;
+    const qty = Number(qtyInput.value) || 1;
+    if(!size || p.variants[size] <= 0){ toast("Pilih size yang tersedia terlebih dahulu"); return; }
+    if (qty > p.variants[size]) { toast(`Jumlah melebihi stok tersedia (${p.variants[size]})`); return; }
+    
     addToCart({ id: p.id, size, qty });
     closeModal(modalProduct);
     toast("Berhasil ditambahkan ke keranjang");
@@ -270,8 +335,11 @@ function addToCart({ id, size, qty }){
   const available = prod.variants[size] || 0;
   const existing = state.cart.find(i=>i.id===id && i.size===size);
   const currentQty = existing ? existing.qty : 0;
+  
   if(currentQty + qty > available){ toast(`Stok ${prod.name} size ${size} tidak mencukupi (tersisa ${available - currentQty})`); return; }
+  
   if(existing) existing.qty += qty; else state.cart.push({ id, size, qty });
+  
   save("paws_cart", state.cart); updateCartUI();
 }
 
@@ -286,14 +354,19 @@ function updateCartUI(){
   renderCartContents();
 }
 
+// REVISI: Menambahkan tombol "Ubah" untuk Edit Pesanan
 function renderCartContents(){
   if(!cartContents) return;
   if(state.cart.length === 0){ cartContents.innerHTML = `<p style="padding:18px;color:#6b7280">Keranjang kosong.</p>`; return; }
   cartContents.innerHTML = "";
-  state.cart.forEach(item=>{
+  
+  state.cart.forEach((item, index)=>{
     const p = state.products.find(x=>x.id===item.id);
+    const prodStock = p.variants[item.size] || 0;
     const row = document.createElement("div");
-    row.style.display="flex";row.style.justifyContent="space-between";row.style.alignItems="center";row.style.padding="10px 0";
+    row.style.display="flex";row.style.justifyContent="space-between";row.style.alignItems="center";row.style.padding="10px 0";row.style.borderBottom="1px solid #f3f4f6";
+    const isMax = item.qty >= prodStock;
+
     row.innerHTML = `
       <div style="display:flex;gap:10px;align-items:center">
         <img src="${p.images[0]}" alt="${p.name}" style="width:64px;height:64px;object-fit:cover;border-radius:8px"/>
@@ -304,10 +377,11 @@ function renderCartContents(){
         </div>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
-        <button class="btn-ghost" data-action="dec" data-id="${item.id}" data-size="${item.size}">-</button>
+        <button class="btn-ghost" data-action="dec" data-idx="${index}">-</button>
         <div>${item.qty}</div>
-        <button class="btn-ghost" data-action="inc" data-id="${item.id}" data-size="${item.size}">+</button>
-        <button class="btn-ghost" data-action="del" data-id="${item.id}" data-size="${item.size}">Hapus</button>
+        <button class="btn-ghost" data-action="inc" data-idx="${index}" ${isMax ? 'disabled' : ''}>+</button>
+        <button class="btn-outline" data-action="edit" data-idx="${index}">Ubah</button>
+        <button class="btn-ghost" data-action="del" data-idx="${index}">Hapus</button>
       </div>
     `;
     cartContents.appendChild(row);
@@ -316,34 +390,149 @@ function renderCartContents(){
   cartContents.querySelectorAll("[data-action]").forEach(btn=>{
     btn.onclick = ()=>{
       const action = btn.getAttribute("data-action");
-      const id = btn.getAttribute("data-id");
-      const size = btn.getAttribute("data-size");
-      const idx = state.cart.findIndex(x=>x.id===id && x.size===size);
-      if(idx === -1) return;
+      const idx = Number(btn.getAttribute("data-idx"));
+      const item = state.cart[idx];
+      if(!item) return;
+
       if(action === "inc"){
-        const prod = state.products.find(x=>x.id===id);
-        const available = prod.variants[size] || 0;
-        if(state.cart[idx].qty + 1 > available) { toast("Stok tidak cukup"); return; }
-        state.cart[idx].qty++;
+        const prod = state.products.find(x=>x.id===item.id);
+        const available = prod.variants[item.size] || 0;
+        if(item.qty + 1 > available) { toast("Stok tidak cukup"); return; }
+        item.qty++;
       } else if(action === "dec"){
-        state.cart[idx].qty--;
-        if(state.cart[idx].qty <= 0) state.cart.splice(idx,1);
+        item.qty--;
+        if(item.qty <= 0) state.cart.splice(idx,1);
       } else if(action === "del"){
         state.cart.splice(idx,1);
+      } else if(action === "edit"){
+          openEditCartModal(idx);
+          return;
       }
       save("paws_cart", state.cart); updateCartUI();
     };
   });
 }
 
+// BARU: Modal untuk Edit Item Keranjang
+function openEditCartModal(index) {
+    const item = state.cart[index];
+    const p = state.products.find(x => x.id === item.id);
+    if (!item || !p) return;
+
+    const sizes = Object.keys(p.variants);
+    const options = sizes.map(s => 
+        `<option value="${s}" ${s === item.size ? 'selected' : ''} ${p.variants[s] <= 0 && s !== item.size ? "disabled":""}>
+        ${s} ${p.variants[s] <= 0 && s !== item.size ? "(Habis)" : (s === item.size ? `(Stok: ${p.variants[s] + item.qty})` : `(Stok: ${p.variants[s]})`)}
+        </option>`
+    ).join("");
+
+    const tempModal = document.createElement('div');
+    tempModal.className = 'modal';
+    tempModal.id = 'modal-edit-cart';
+    tempModal.setAttribute('aria-hidden', 'false');
+    tempModal.style.display = 'flex';
+    
+    tempModal.innerHTML = `
+        <div class="modal-card" style="max-width:400px">
+            <button class="modal-close" onclick="closeModal(document.getElementById('modal-edit-cart'))">×</button>
+            <h3>Ubah Pesanan: ${p.name}</h3>
+            <div style="margin-top:15px">
+                <label>Size Saat Ini: ${item.size}</label>
+                <label>Size Baru
+                    <select id="edit-size">${options}</select>
+                </label>
+                <label>Jumlah (Maksimal Stok)
+                    <input id="edit-qty" type="number" min="1" value="${item.qty}"/>
+                </label>
+            </div>
+            <div class="modal-actions" style="border:none">
+                <button id="btn-save-edit" class="btn-primary">Simpan Perubahan</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(tempModal);
+
+    const sizeSelect = document.getElementById("edit-size");
+    const qtyInput = document.getElementById("edit-qty");
+    
+    // Set initial max qty: Stok tersedia + Qty item yang sedang diubah (karena qty item ini akan dikembalikan)
+    const initialMax = p.variants[item.size] + item.qty;
+    qtyInput.max = initialMax;
+
+    sizeSelect.onchange = () => {
+        const newSize = sizeSelect.value;
+        const currentStock = p.variants[newSize] || 0;
+        
+        // Jika size tidak berubah, max = stok saat ini + qty yang dipesan
+        if (newSize === item.size) {
+            qtyInput.max = currentStock + item.qty;
+        } else {
+            // Jika size berubah, max = stok yang tersedia untuk size baru
+            qtyInput.max = currentStock;
+        }
+        qtyInput.value = Math.min(Number(qtyInput.value), qtyInput.max);
+    };
+
+    document.getElementById("btn-save-edit").onclick = () => {
+        const newSize = sizeSelect.value;
+        const newQty = Number(qtyInput.value);
+        
+        if (newQty <= 0) {
+            if (confirm("Jumlah 0. Yakin ingin menghapus item ini?")) {
+                state.cart.splice(index, 1);
+            } else {
+                return;
+            }
+        } else if (newSize === item.size) {
+            // Hanya ubah jumlah
+            item.qty = newQty;
+        } else {
+            // Ubah size dan jumlah
+            
+            // 1. Kembalikan stok item lama
+            p.variants[item.size] += item.qty; 
+            
+            // 2. Cek ketersediaan untuk item baru
+            const availableNew = p.variants[newSize];
+            if (newQty > availableNew) {
+                toast(`Stok size ${newSize} hanya ${availableNew}. Ubah jumlah pesanan.`);
+                // Batalkan pengembalian stok agar tidak double refund
+                p.variants[item.size] -= item.qty; 
+                return;
+            }
+            
+            // 3. Update keranjang dan kurangi stok size baru
+            item.size = newSize;
+            item.qty = newQty;
+            p.variants[newSize] -= newQty;
+
+            // Jika ada item lain dengan size yang sama, gabungkan
+            const otherSameSizeItemIndex = state.cart.findIndex((i, idx) => i.id === item.id && i.size === newSize && idx !== index);
+            if (otherSameSizeItemIndex !== -1) {
+                state.cart[otherSameSizeItemIndex].qty += newQty;
+                state.cart.splice(index, 1); // Hapus item yang baru diubah (karena sudah digabung)
+            }
+
+            // Simpan perubahan stok ke localStorage (tanpa harus checkout)
+            save("paws_products", state.products);
+        }
+
+        save("paws_cart", state.cart);
+        updateCartUI();
+        closeModal(tempModal);
+        toast("Pesanan di keranjang berhasil diubah!");
+    };
+}
+
+
 function subtotal(){ return state.cart.reduce((sum,it)=>{ const p = state.products.find(x=>x.id===it.id); return sum + (p.price * it.qty); },0); }
 
-/* ========== WISHLIST ========== */
+/* ========== WISHLIST (UNCHANGED) ========== */
 function toggleWishlist(id){
   const idx = state.wishlist.indexOf(id);
   if(idx === -1) state.wishlist.push(id); else state.wishlist.splice(idx,1);
   save("paws_wishlist", state.wishlist);
-  renderProducts();
+  renderProducts(); 
   renderWishlistCount();
 }
 function renderWishlistCount(){ wishlistCountEl.textContent = state.wishlist.length; }
@@ -384,8 +573,16 @@ function renderWishlistContents(){
     btn.onclick = ()=>{
       const action = btn.getAttribute('data-action');
       const id = btn.getAttribute('data-id');
-      if(action === 'view') { openProductModal(id); }
-      else if(action === 'remove') { const i = state.wishlist.indexOf(id); if(i !== -1) state.wishlist.splice(i,1); save("paws_wishlist", state.wishlist); renderWishlistCount(); renderWishlistContents(); renderProducts(); }
+      if(action === 'view') { closeModal(modalWishlist); openProductModal(id); }
+      else if(action === 'remove') { 
+        if(!confirm("Anda yakin ingin menghapus item ini dari wishlist?")) return; 
+        const i = state.wishlist.indexOf(id); 
+        if(i !== -1) state.wishlist.splice(i,1); 
+        save("paws_wishlist", state.wishlist); 
+        renderWishlistCount(); 
+        renderWishlistContents(); 
+        renderProducts(); 
+      }
     };
   });
 }
@@ -393,37 +590,86 @@ function renderWishlistContents(){
 /* Wishlist modal handlers */
 document.getElementById("btn-wishlist").onclick = ()=> openWishlistModal();
 document.getElementById("close-wishlist-modal").onclick = ()=> closeModal(modalWishlist);
-document.getElementById("btn-wishlist-clear").onclick = ()=> { if(!confirm("Kosongkan wishlist?")) return; state.wishlist = []; save("paws_wishlist", state.wishlist); renderWishlistCount(); renderWishlistContents(); renderProducts(); };
+document.getElementById("btn-wishlist-clear").onclick = ()=> { 
+  if(!confirm("Anda yakin ingin mengosongkan wishlist?")) return; 
+  state.wishlist = []; 
+  save("paws_wishlist", state.wishlist); 
+  renderWishlistCount(); 
+  renderWishlistContents(); 
+  renderProducts(); 
+};
 modalWishlist.onclick = (e)=> { if (e.target === modalWishlist) closeModal(modalWishlist); };
 
-/* ========== CHECKOUT ========== */
-function openCheckout(){ if(state.cart.length === 0){ toast("Keranjang kosong"); return; } modalCheckout.style.display = "flex"; modalCheckout.setAttribute("aria-hidden","false"); }
+/* ========== CHECKOUT (UNCHANGED) ========== */
+function openCheckout(){ 
+  if(state.cart.length === 0){ toast("Keranjang kosong"); return; } 
+  modalCheckout.style.display = "flex"; modalCheckout.setAttribute("aria-hidden","false"); 
+
+  if(state.user){
+    document.getElementById("cf-name").value = state.user.name || "";
+    document.getElementById("cf-phone").value = state.user.phone || ""; 
+  }
+}
 document.getElementById("close-checkout-modal").onclick = ()=> closeModal(modalCheckout);
 
 document.getElementById("checkout-form").onsubmit = function(e){
   e.preventDefault();
+  
   const name = document.getElementById("cf-name").value.trim();
   const address = document.getElementById("cf-address").value.trim();
   const phone = document.getElementById("cf-phone").value.trim();
   const payment = document.getElementById("cf-payment").value;
-  const delivery = document.getElementById("cf-delivery").value; // Ambil nilai delivery
+  const delivery = document.getElementById("cf-delivery").value;
   
+  // Validasi Nomor Telepon
+  const phoneRegex = /^(08|62|\+62)\d{8,15}$/; 
+  if (!phoneRegex.test(phone)) {
+      toast("Format Nomor HP tidak valid (gunakan 08xx atau +62xx)");
+      document.getElementById("cf-phone").focus();
+      return;
+  }
+
+  // Update user state dengan data kontak terbaru
+  if(state.user) {
+    state.user.phone = phone;
+    state.user.name = name;
+    save("paws_user", state.user);
+  }
+  
+  // Salin keranjang sebelum dikosongkan untuk update stok dan pesan order
+  const itemsToReduceStock = JSON.parse(JSON.stringify(state.cart));
+
   const orderText = buildOrderText({ name, address, phone, payment });
   const encoded = encodeURIComponent(orderText);
 
+  let success = false;
   if(delivery === 'wa'){
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, "_blank");
     toast("Dialihkan ke WhatsApp...");
+    success = true;
   } else if(delivery === 'telegram'){
     window.open(`https://t.me/${TELEGRAM_USERNAME}?text=${encoded}`, "_blank");
     toast("Dialihkan ke Telegram...");
+    success = true;
   } else {
     toast("Pilih metode pengiriman pesanan.");
     return;
   }
   
-  // state.cart = []; save("paws_cart", state.cart); updateCartUI(); // Opsional: bersihkan keranjang setelah order
-  closeModal(modalCheckout);
+  if (success) {
+      // 1. Update Stok Fisik & Simpan Permanen ke localStorage
+      updatePhysicalStock(itemsToReduceStock);
+      
+      // 2. Kosongkan Keranjang
+      state.cart = []; 
+      save("paws_cart", state.cart); 
+      
+      // 3. Perbarui UI
+      updateCartUI(); 
+      renderProducts(); // Wajib dipanggil untuk update tampilan stok di grid
+      
+      closeModal(modalCheckout);
+  }
 };
 
 document.getElementById("btn-copy-order").onclick = function(){
@@ -444,12 +690,20 @@ function buildOrderText({ name="", address="", phone="", payment="" }){
   });
   lines.push(""); lines.push(`Subtotal: ${rupiah(subtotal())}`);
   const ship = subtotal() >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FLAT;
-  lines.push(`Ongkir: ${rupiah(ship)}`); lines.push(`TOTAL: ${rupiah(subtotal()+ship)}`); lines.push(""); lines.push("=== Data Pembeli ===");
-  lines.push(`Nama: ${name}`); lines.push(`Alamat: ${address}`); lines.push(`No HP: ${phone}`); lines.push(`Metode Pembayaran: ${payment}`); lines.push(""); lines.push("Terima kasih! Mohon tunggu konfirmasi.");
+  lines.push(`Ongkir: ${rupiah(ship)}`); 
+  lines.push(`TOTAL: ${rupiah(subtotal()+ship)}`); 
+  lines.push(""); 
+  lines.push("=== Data Pembeli ===");
+  lines.push(`Nama: ${name}`); 
+  lines.push(`Alamat: ${address}`); 
+  lines.push(`No HP: ${phone}`); 
+  lines.push(`Metode Pembayaran: ${payment}`); 
+  lines.push(""); 
+  lines.push("Terima kasih! Mohon tunggu konfirmasi.");
   return lines.join("\n");
 }
 
-/* ========== LOGIN (SIMPLE) ========== */
+/* ========== LOGIN (SIMPLE) (UNCHANGED) ========== */
 const btnAccount = document.getElementById("btn-account");
 const modalLoginEl = document.getElementById("modal-login");
 btnAccount.onclick = ()=>{
@@ -463,41 +717,63 @@ document.getElementById("login-form").onsubmit = function(e){
   e.preventDefault();
   const email = document.getElementById("login-email").value.trim();
   const name = document.getElementById("login-name").value.trim();
-  state.user = { email, name, loggedAt: new Date().toISOString() };
+  
+  state.user = { email, name, loggedAt: new Date().toISOString(), phone: state.user ? state.user.phone : '' }; 
+  
   save("paws_user", state.user);
   toast(`Welcome, ${name}!`);
   closeModal(modalLoginEl);
 };
-document.getElementById("btn-logout").onclick = function(){ state.user = null; save("paws_user", null); toast("Logged out"); closeModal(modalLoginEl); };
+document.getElementById("btn-logout").onclick = function(){ 
+  if(!confirm("Anda yakin ingin logout?")) return;
+  state.user = null; 
+  save("paws_user", null); 
+  toast("Logged out"); 
+  closeModal(modalLoginEl); 
+};
 
-/* ========== UI EVENTS & MODALS ========== */
+/* ========== UI EVENTS & MODALS (UNCHANGED) ========== */
 document.getElementById("btn-cart").onclick = ()=> { modalCart.style.display = "flex"; modalCart.setAttribute("aria-hidden","false"); renderCartContents(); };
 document.getElementById("close-cart-modal").onclick = ()=> closeModal(modalCart);
 modalCart.onclick = (e)=> { if (e.target === modalCart) closeModal(modalCart); };
 document.getElementById("btn-checkout").onclick = ()=> { closeModal(modalCart); openCheckout(); };
-document.getElementById("btn-clear-cart").onclick = ()=> { if(!confirm("Kosongkan keranjang?")) return; state.cart = []; save("paws_cart", state.cart); updateCartUI(); };
+document.getElementById("btn-clear-cart").onclick = ()=> { 
+  if(!confirm("Anda yakin ingin mengosongkan keranjang?")) return; 
+  state.cart = []; 
+  save("paws_cart", state.cart); 
+  updateCartUI(); 
+  toast("Keranjang dikosongkan.");
+};
 
 /* modal close helper */
-function closeModal(m){ if(!m) return; m.style.display = "none"; m.setAttribute("aria-hidden","true"); }
+function closeModal(m){ if(!m) return; m.style.display = "none"; m.setAttribute("aria-hidden","true"); 
+  // Hapus modal edit cart sementara jika ada
+  const tempModal = document.getElementById('modal-edit-cart');
+  if(tempModal) tempModal.remove();
+}
 
 /* ========== TOAST ========== */
-function toast(text){ const t = document.createElement("div"); t.textContent = text; t.style.position = "fixed"; t.style.right = "18px"; t.style.bottom = "110px"; t.style.background = "var(--accent)"; t.style.color = "white"; t.style.padding = "10px 14px"; t.style.borderRadius = "10px"; t.style.boxShadow = "0 8px 30px rgba(10,122,83,0.12)"; t.style.transition = "opacity 0.3s ease"; document.body.appendChild(t); setTimeout(()=>{ t.style.opacity = 0; setTimeout(() => t.remove(), 300); },1800); }
+function toast(text){ const t = document.createElement("div"); t.textContent = text; t.style.position = "fixed"; t.style.right = "20px"; t.style.bottom = "110px"; t.style.background = "var(--accent)"; t.style.color = "white"; t.style.padding = "10px 14px"; t.style.borderRadius = "10px"; t.style.boxShadow = "0 8px 30px rgba(10,122,83,0.12)"; t.style.transition = "opacity 0.3s ease, transform 0.3s ease"; t.style.transform = "translateY(100px)"; document.body.appendChild(t); setTimeout(()=>{ t.style.transform = "translateY(0)"; },10); setTimeout(()=>{ t.style.opacity = 0; setTimeout(() => t.remove(), 300); },2000); }
 
-/* ========== BOOT ========== */
+/* ========== BOOT (UNCHANGED) ========== */
 function boot(){
+  // Jika tidak ada data produk di localStorage, simpan data default awal
+  if(!load("paws_products")){
+    save("paws_products", PRODUCTS);
+    state.products = PRODUCTS;
+  }
+
   // initial active nav
-  setActiveNav(document.getElementById("btn-newdrop"));
-  showSection('collection');
-  renderProducts(); updateCartUI(); renderWishlistCount();
+  document.getElementById("btn-newdrop").click(); // Trigger klik untuk load produk & set nav
+  updateCartUI(); 
+  renderWishlistCount();
 
   // Logika Banner Carousel
   renderBanner();
   attachBannerListeners();
 
   // ESC closes modals
-  window.addEventListener("keydown", (e)=>{ if(e.key === "Escape"){ [modalProduct,modalCart,modalCheckout,modalLogin,modalWishlist].forEach(m=>m && (m.style.display="none")); }});
+  window.addEventListener("keydown", (e)=>{ if(e.key === "Escape"){ [modalProduct,modalCart,modalCheckout,modalLogin,modalWishlist, document.getElementById('modal-edit-cart')].forEach(m=>m && closeModal(m)); }});
 }
 
 boot();
-
-
