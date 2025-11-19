@@ -44,7 +44,7 @@
       </div>
     </section>
 
-    <section id="article" class="section article-section" style="display:none">
+        <section id="article" class="section article-section" style="display:none">
       <div class="article-inner">
         <h2>Kenapa Streetwear Masih Relevan?</h2>
         <p>Dari subkultur ke runway — longform konten brand Anda di sini. Tambahkan gambar lookbook dan editorial untuk SEO & trust.</p>
@@ -52,6 +52,46 @@
         <p>Konten editorial meningkatkan brand authority dan SEO.</p>
       </div>
     </section>
+
+    <section id="faq" class="section static-page-section" style="display:none">
+      <div class="static-page-inner">
+        <h2>Tanya Jawab Umum (FAQ)</h2>
+        <h4 style="margin-top:20px;">Apakah produk PAWS Original?</h4>
+        <p style="margin-bottom:15px;color:var(--muted)">Semua produk yang dijual di sini 100% original dan diproduksi secara terbatas (limited drop).</p>
+        <h4 style="margin-top:20px;">Bagaimana cara memastikan ukuran yang pas?</h4>
+        <p style="margin-bottom:15px;color:var(--muted)">Anda dapat melihat panduan ukuran (*size chart*) di deskripsi produk. Kami sarankan mengukur baju favorit Anda dan membandingkannya.</p>
+        <h4 style="margin-top:20px;">Berapa lama proses pengiriman?</h4>
+        <p style="margin-bottom:15px;color:var(--muted)">Pengiriman standar memakan waktu 3-5 hari kerja setelah pembayaran dikonfirmasi. Kami akan mengirimkan nomor resi via WhatsApp/Telegram.</p>
+      </div>
+    </section>
+
+    <section id="terms" class="section static-page-section" style="display:none">
+      <div class="static-page-inner">
+        <h2>Syarat dan Ketentuan (S&K)</h2>
+        <h4 style="margin-top:20px;">1. Akurasi Informasi</h4>
+        <p style="margin-bottom:15px;color:var(--muted)">Kami berusaha keras agar semua deskripsi produk, harga, dan ketersediaan stok akurat. Namun, error visual dan data mungkin terjadi.</p>
+        <h4 style="margin-top:20px;">2. Kebijakan Retur</h4>
+        <p style="margin-bottom:15px;color:var(--muted)">Retur hanya diterima jika terjadi kerusakan (robek) atau kesalahan pengiriman size/produk dari pihak PAWS. Retur tidak diterima karena salah pilih ukuran oleh pembeli.</p>
+        <h4 style="margin-top:20px;">3. Pembatalan Pesanan</h4>
+        <p style="margin-bottom:15px;color:var(--muted)">Pembatalan pesanan hanya dapat dilakukan maksimal 1 jam setelah order jika belum diproses pengiriman.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section static-page-section" style="display:none">
+      <div class="static-page-inner">
+        <h2>Kontak Kami</h2>
+        <p style="margin-top:10px;color:var(--muted)">Jangan ragu menghubungi kami untuk pertanyaan mengenai produk, pesanan, atau kolaborasi.</p>
+        <div style="margin-top:20px;display:grid;gap:10px">
+            <div style="font-weight:700">WhatsApp Admin:</div>
+            <a href="https://wa.me/6287785981177" target="_blank" style="color:var(--accent)">+62 877-8598-1177</a>
+            <div style="font-weight:700">Instagram:</div>
+            <a href="https://instagram.com/paws.fck" target="_blank" style="color:var(--accent)">@paws.fck</a>
+            <div style="font-weight:700">Email:</div>
+            <a href="mailto:paws.fck@email.com" style="color:var(--accent)">paws.fck@email.com</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer" role="contentinfo">
@@ -61,9 +101,9 @@
         <p>KUALITAS BERANI — Est. <span id="year"></span></p>
       </div>
       <div class="footer-links">
-        <a href="#">FAQ</a>
-        <a href="#">Syarat & Ketentuan</a>
-        <a href="#">Kontak</a>
+        <a href="#" id="link-faq">FAQ</a>
+        <a href="#" id="link-terms">Syarat & Ketentuan</a>
+        <a href="#" id="link-contact">Kontak</a>
       </div>
     </div>
     <small>&copy; <span id="year-copy"></span> PAWS — All rights reserved.</small>
@@ -101,7 +141,7 @@
       <div class="modal-actions">
         <button id="btn-wishlist-clear" class="btn-ghost">Kosongkan Wishlist</button>
       </div>
-    </div>
+      </div>
   </div>
 
   <div id="modal-checkout" class="modal" aria-hidden="true" role="dialog" aria-labelledby="checkout-title">
@@ -111,7 +151,7 @@
       <form id="checkout-form" class="checkout-form">
         <label>Nama Lengkap <input id="cf-name" required /></label>
         <label>Alamat Lengkap <textarea id="cf-address" rows="2" required></textarea></label>
-        <label>No. HP <input id="cf-phone" required placeholder="08xxxxxxxx"/></label>
+        <label>No. HP <input id="cf-phone" required placeholder="08xxxxxxxx atau +62xxxxxxxx"/></label>
         <label>Metode Pembayaran
           <select id="cf-payment">
             <option value="transfer-bank">Transfer Bank</option>
@@ -146,21 +186,24 @@
         <label>Nama Tampilan <input id="login-name" required/></label>
         <div class="modal-actions">
           <button type="submit" class="btn-primary">Simpan</button>
-          <button id="btn-logout" type="button" class="btn-ghost" style="display:none">Logout</button>
+          <button type="button" id="btn-logout" class="btn-ghost" style="display:none">Logout</button>
         </div>
       </form>
     </div>
   </div>
 
   <div class="floating">
-    <a href="https://wa.me/6287785981177" target="_blank" aria-label="WhatsApp" class="float-wa">WA</a>
-    <a href="https://t.me/pawsfck" target="_blank" aria-label="Telegram" class="float-telegram">TG</a>
-    <a href="https://instagram.com/paws.fck" target="_blank" aria-label="Instagram" class="float-ig">IG</a>
+    <a href="https://wa.me/6287785981177" target="_blank" aria-label="WhatsApp" class="float-wa" title="Hubungi kami via WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="WhatsApp Logo" loading="lazy">
+    </a>
+    <a href="https://t.me/pawsfck" target="_blank" aria-label="Telegram" class="float-telegram" title="Hubungi kami via Telegram">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram Logo" loading="lazy">
+    </a>
+    <a href="https://instagram.com/paws.fck" target="_blank" aria-label="Instagram" class="float-ig" title="Kunjungi Instagram kami">
+        <img src="https://cdn-icons-png.flaticon.com/512/3955/3955024.png" alt="Instagram Logo" loading="lazy">
+    </a>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
