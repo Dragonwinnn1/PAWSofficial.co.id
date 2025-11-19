@@ -30,7 +30,7 @@ const PRODUCTS = [
   { id: "p1", name: "Urban Mischief Tee", price: 249000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU1.jpg?raw=true"], category: ["kaos","new-drop"], description: "Cotton Combed 30s. Regular Fit.", variants: { S: 5, M: 7, L: 3, XL: 0 } },
   { id: "p2", name: "Black & White Anarchy Hoodie", price: 489000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU2.jpg?raw=true"], category: ["jaket","sale"], description: "Fleece 280gsm. Oversize Fit.", variants: { S: 1, M: 4, L: 2, XL: 1 } },
   { id: "p3", name: "Cargo Pants Black V3", price: 399000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/BAJU3.jpg?raw=true"], category: ["celana","new-drop"], description: "Twill premium. Slim tapered.", variants: { S: 2, M: 8, L: 6, XL: 4 } },
-  { id: "p4", name: "Snapback Original", price: 199000, images: ["https://dnd.dlps.my.id/wp-content/uploads/2025/09/solid-5panel-1-768x768.jpg"], category: ["aksesoris","new-drop"], description: "Polyester drill. Adjustable strap.", variants: { OneSize: 30 } }
+  { id: "p4", name: "Snapback Original", price: 199000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/QQ7.PNG?raw=true"], category: ["aksesoris","new-drop"], description: "Polyester drill. Adjustable strap.", variants: { OneSize: 30 } }
 ];
 
 /* ========== STATE ========== */
@@ -777,4 +777,5 @@ function boot(){
 }
 
 boot();
+
 
