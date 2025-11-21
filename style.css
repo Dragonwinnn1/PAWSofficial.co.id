@@ -336,24 +336,27 @@ input, textarea, select{
 
 /* Gaya Umum untuk Tombol Floating */
 .float-wa, .float-telegram, .float-ig {
-  width:46px;height:46px;
+  width:46px;
+  height:46px;
   border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-decoration:none;
   transition: transform 0.2s ease;
 }
 
 .float-wa{
-  background:#25d366;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  background:#25d366; /* Warna Hijau WhatsApp solid */
+  /* box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); <-- Dihilangkan */
 }
 .float-telegram{
-  background:#0088cc; /* Warna biru Telegram */
-  box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+  background:#0088cc; /* Warna Biru Telegram solid */
+  /* box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4); <-- Dihilangkan */
 }
 .float-ig{
-  background:#c13584;
-  box-shadow: 0 4px 15px rgba(193, 53, 132, 0.4);
+  background:#c13584; /* Warna Magenta Instagram solid */
+  /* box-shadow: 0 4px 15px rgba(193, 53, 132, 0.4); <-- Dihilangkan */
 }
 
 /* Efek Hover untuk Tombol */
@@ -434,3 +437,4 @@ input, textarea, select{
 .static-page-inner p {
     line-height: 1.6;
 }
+
