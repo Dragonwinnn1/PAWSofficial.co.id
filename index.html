@@ -5,179 +5,157 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>PAWS — Streetwear Collective</title>
   <meta name="description" content="PAWS Streetwear — Quality streetwear. Shop tees, hoodies, jackets & accessories." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header" role="banner">
     <div class="header-inner">
       <a class="brand" href="#" aria-label="PAWS home" id="brand-link">
-        <img src="https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/LOGO%20ORI%201.PNG?raw=true" alt="PAWS Streetwear Collective Logo" class="logo-image" style="height: 150px; width: auto;" />
-              </a>
+        <img src="https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/LOGO%20ORI%201.PNG?raw=true" alt="PAWS Streetwear Collective Logo" class="logo-image" style="height: 60px; width: auto;" /> 
+      </a>
 
       <nav class="main-nav" role="navigation" aria-label="Main">
-        <button class="nav-btn" id="btn-newdrop">NEW DROP</button>
-        <button class="nav-btn" id="btn-sale">SALE</button>
-        <button class="nav-btn" id="btn-collection">ALL</button>
-        <button class="nav-btn" id="btn-article">ARTIKEL</button>
+        <button class="nav-btn" id="btn-newdrop">New Drop</button>
+        <button class="nav-btn" id="btn-collection">All</button>
+        <button class="nav-btn" id="btn-sale">Sale</button>
+        <button class="nav-btn" id="btn-article">Article</button>
       </nav>
 
-      <div class="header-actions" role="group" aria-label="Header actions">
-        <button id="btn-wishlist" class="icon-btn" title="Wishlist" aria-label="Wishlist">♡ <span id="wishlist-count">0</span></button>
-        <button id="btn-cart" class="cart-btn" title="Keranjang" aria-label="Cart">🛒 <span id="cart-count">0</span></button>
-        <button id="btn-account" class="icon-btn" title="Akun">👤</button>
+      <div class="header-actions">
+        <button class="icon-btn" id="btn-account" aria-label="Akun"><i class="fas fa-user"></i></button>
+        <button class="icon-btn" id="btn-wishlist" aria-label="Wishlist"><i class="fas fa-heart"></i><span id="wishlist-count">0</span></button>
+        <button class="cart-btn" id="btn-cart" aria-label="Keranjang">Keranjang (<span id="cart-count">0</span>)</button>
       </div>
     </div>
   </header>
 
   <main>
-    <section id="hero" class="hero-banner" aria-label="Hero banner">
-        <div id="banner-container" class="banner-container">
-            </div>
-        <button id="banner-prev" class="banner-nav prev" aria-label="Previous banner">❮</button>
-        <button id="banner-next" class="banner-nav next" aria-label="Next banner">❯</button>
-    </section>
-    <section id="collection" class="collection section" aria-labelledby="collection-title">
-      <div class="collection-inner">
-        <h2 id="collection-title">NEW DROP</h2>
-        <div id="product-grid" class="product-grid" aria-live="polite"></div>
-      </div>
-    </section>
-
-        <section id="article" class="section article-section" style="display:none">
-      <div class="article-inner">
-        <h2>Kenapa Streetwear Masih Relevan?</h2>
-        <p>Dari subkultur ke runway — longform konten brand Anda di sini. Tambahkan gambar lookbook dan editorial untuk SEO & trust.</p>
-        <img src="hero-distro.jpg" alt="Artikel image" style="width:100%;max-width:900px;border-radius:10px" loading="lazy"/>
-        <p>Konten editorial meningkatkan brand authority dan SEO.</p>
-      </div>
-    </section>
-
-    <section id="faq" class="section static-page-section" style="display:none">
-      <div class="static-page-inner">
-        <h2>Tanya Jawab Umum (FAQ)</h2>
-        <h4 style="margin-top:20px;">Apakah produk PAWS Original?</h4>
-        <p style="margin-bottom:15px;color:var(--muted)">Semua produk yang dijual di sini 100% original dan diproduksi secara terbatas (limited drop).</p>
-        <h4 style="margin-top:20px;">Bagaimana cara memastikan ukuran yang pas?</h4>
-        <p style="margin-bottom:15px;color:var(--muted)">Anda dapat melihat panduan ukuran (*size chart*) di deskripsi produk. Kami sarankan mengukur baju favorit Anda dan membandingkannya.</p>
-        <h4 style="margin-top:20px;">Berapa lama proses pengiriman?</h4>
-        <p style="margin-bottom:15px;color:var(--muted)">Pengiriman standar memakan waktu 3-5 hari kerja setelah pembayaran dikonfirmasi. Kami akan mengirimkan nomor resi via WhatsApp/Telegram.</p>
-      </div>
-    </section>
-
-    <section id="terms" class="section static-page-section" style="display:none">
-      <div class="static-page-inner">
-        <h2>Syarat dan Ketentuan (S&K)</h2>
-        <h4 style="margin-top:20px;">1. Akurasi Informasi</h4>
-        <p style="margin-bottom:15px;color:var(--muted)">Kami berusaha keras agar semua deskripsi produk, harga, dan ketersediaan stok akurat. Namun, error visual dan data mungkin terjadi.</p>
-        <h4 style="margin-top:20px;">2. Kebijakan Retur</h4>
-        <p style="margin-bottom:15px;color:var(--muted)">Retur hanya diterima jika terjadi kerusakan (robek) atau kesalahan pengiriman size/produk dari pihak PAWS. Retur tidak diterima karena salah pilih ukuran oleh pembeli.</p>
-        <h4 style="margin-top:20px;">3. Pembatalan Pesanan</h4>
-        <p style="margin-bottom:15px;color:var(--muted)">Pembatalan pesanan hanya dapat dilakukan maksimal 1 jam setelah order jika belum diproses pengiriman.</p>
-      </div>
-    </section>
-
-    <section id="contact" class="section static-page-section" style="display:none">
-      <div class="static-page-inner">
-        <h2>Kontak Kami</h2>
-        <p style="margin-top:10px;color:var(--muted)">Jangan ragu menghubungi kami untuk pertanyaan mengenai produk, pesanan, atau kolaborasi.</p>
-        <div style="margin-top:20px;display:grid;gap:10px">
-            <div style="font-weight:700">WhatsApp Admin:</div>
-            <a href="https://wa.me/6287785981177" target="_blank" style="color:var(--accent)">+62 877-8598-1177</a>
-            <div style="font-weight:700">Instagram:</div>
-            <a href="https://instagram.com/paws.fck" target="_blank" style="color:var(--accent)">@paws.fck</a>
-            <div style="font-weight:700">Email:</div>
-            <a href="mailto:paws.fck@email.com" style="color:var(--accent)">paws.fck@email.com</a>
+    <section class="section" id="hero" style="display:none">
+        <div class="hero-banner">
+            <div id="banner-container" class="banner-container">
+                </div>
+            <button class="banner-nav prev" id="banner-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+            <button class="banner-nav next" id="banner-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
         </div>
-      </div>
+    </section>
+
+    <section class="section" id="collection" style="display:none">
+        <div class="collection-inner">
+            <h2 id="collection-title">COLLECTION</h2>
+            <div id="product-grid" class="product-grid">
+                </div>
+        </div>
+    </section>
+
+    <section class="section" id="article" style="display:none">
+        <div class="article-inner">
+            <h2 style="margin-bottom:20px;">Artikel & Berita</h2>
+            <p>Area ini bisa diisi dengan postingan blog atau artikel tentang brand Anda.</p>
+        </div>
+    </section>
+
+    <section class="section" id="faq" style="display:none">
+        <div class="static-page-inner">
+            <h2>FAQ (Pertanyaan Umum)</h2>
+            <p>Informasi mengenai pengiriman, pengembalian, dan pembayaran.</p>
+        </div>
+    </section>
+
+    <section class="section" id="terms" style="display:none">
+        <div class="static-page-inner">
+            <h2>Syarat & Ketentuan</h2>
+            <p>Aturan penggunaan website dan layanan.</p>
+        </div>
+    </section>
+
+    <section class="section" id="contact" style="display:none">
+        <div class="static-page-inner">
+            <h2>Hubungi Kami</h2>
+            <p>Detail kontak dan form (jika ada).</p>
+        </div>
     </section>
 
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="footer-inner">
-      <div>
-        <strong>PAWS</strong>
-        <p>KUALITAS BERANI — Est. <span id="year"></span></p>
-      </div>
-      <div class="footer-links">
-        <a href="#" id="link-faq">FAQ</a>
-        <a href="#" id="link-terms">Syarat & Ketentuan</a>
-        <a href="#" id="link-contact">Kontak</a>
-      </div>
-    </div>
-    <small>&copy; <span id="year-copy"></span> PAWS — All rights reserved.</small>
-  </footer>
-
-  <div id="modal-product" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal" id="modal-product" aria-hidden="true">
     <div class="modal-card">
-      <button class="modal-close" id="close-product-modal" aria-label="Close product modal">×</button>
-      <div id="modal-content" class="modal-content-inner"></div>
+      <button class="modal-close" id="close-product-modal" aria-label="Tutup Produk">×</button>
+      <div id="modal-content" class="modal-content-inner">
+              </div>
     </div>
   </div>
 
-  <div id="modal-cart" class="modal" aria-hidden="true" role="dialog" aria-labelledby="cart-title">
+    <div class="modal" id="modal-cart" aria-hidden="true">
     <div class="modal-card">
-      <button class="modal-close" id="close-cart-modal" aria-label="Close cart">×</button>
-      <h3 id="cart-title">Keranjang Anda</h3>
-      <div id="cart-contents"></div>
+      <button class="modal-close" id="close-cart-modal" aria-label="Tutup Keranjang">×</button>
+      <h3>Keranjang Belanja</h3>
+      <div id="cart-contents" class="modal-content-inner">
+              </div>
       <div class="cart-summary">
         <div>Subtotal: <span id="cart-subtotal">Rp 0</span></div>
-        <div>Estimasi Ongkir: <span id="cart-shipping">Rp 0</span></div>
+        <div>Ongkir: <span id="cart-shipping">Rp 0</span></div>
         <div class="cart-total">Total: <span id="cart-total">Rp 0</span></div>
       </div>
       <div class="modal-actions">
+        <button id="btn-clear-cart" class="btn-ghost">Kosongkan</button>
         <button id="btn-checkout" class="btn-primary">Checkout</button>
-        <button id="btn-clear-cart" class="btn-ghost">Kosongkan Keranjang</button>
+      </div>
+      <p style="font-size:12px;color:#999;text-align:center;margin-top:10px;">Ongkir gratis jika total belanja di atas Rp 500.000</p>
+    </div>
+  </div>
+
+    <div class="modal" id="modal-wishlist" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" id="close-wishlist-modal" aria-label="Tutup Wishlist">×</button>
+      <h3>Wishlist Saya</h3>
+      <div id="wishlist-contents" class="modal-content-inner">
+              </div>
+      <div class="modal-actions" style="border:none">
+        <button id="btn-wishlist-clear" class="btn-ghost">Kosongkan Wishlist</button>
       </div>
     </div>
   </div>
 
-  <div id="modal-wishlist" class="modal" aria-hidden="true" role="dialog" aria-labelledby="wishlist-title">
+    <div class="modal" id="modal-checkout" aria-hidden="true">
     <div class="modal-card">
-      <button class="modal-close" id="close-wishlist-modal" aria-label="Close wishlist">×</button>
-      <h3 id="wishlist-title">Wishlist Anda</h3>
-      <div id="wishlist-contents" style="min-height:120px;padding:10px;color:#6b7280"></div>
-      <div class="modal-actions">
-        <button id="btn-wishlist-clear" class="btn-ghost">Kosongkan Wishlist</button>
-      </div>
-      </div>
-  </div>
-
-  <div id="modal-checkout" class="modal" aria-hidden="true" role="dialog" aria-labelledby="checkout-title">
-    <div class="modal-card">
-      <button class="modal-close" id="close-checkout-modal" aria-label="Close checkout">×</button>
-      <h3 id="checkout-title">Form Checkout</h3>
-      <form id="checkout-form" class="checkout-form">
-        <label>Nama Lengkap <input id="cf-name" required /></label>
-        <label>Alamat Lengkap <textarea id="cf-address" rows="2" required></textarea></label>
-        <label>No. HP <input id="cf-phone" required placeholder="08xxxxxxxx atau +62xxxxxxxx"/></label>
-        <label>Metode Pembayaran
-          <select id="cf-payment">
-            <option value="transfer-bank">Transfer Bank</option>
-            <option value="cod">Bayar di Tempat (COD)</option>
-            <option value="e-wallet">E-Wallet</option>
-          </select>
+      <button class="modal-close" id="close-checkout-modal" aria-label="Tutup Checkout">×</button>
+      <h3>Checkout Pesanan</h3>
+      <form id="checkout-form" class="checkout-form modal-content-inner">
+        <h4>Data Pengiriman</h4>
+        <label>Nama Lengkap <input id="cf-name" required placeholder="Nama Anda"/></label>
+        <label>No HP
+          <input id="cf-phone" type="tel" required placeholder="08xx / +62xx"/>
         </label>
-        <label>Kirim Pesanan Via
-          <select id="cf-delivery">
-            <option value="wa">WhatsApp</option>
-            <option value="telegram">Telegram</option>
-          </select>
-        </label>
-        <div class="checkout-note">
-          <small>Setelah submit, Anda akan dialihkan ke aplikasi yang dipilih dengan format pesanan otomatis. Anda juga dapat menyalin teks order.</small>
-        </div>
+        <div class="checkout-note">Pastikan format nomor HP benar (08xx atau +62xx) untuk pengiriman pesanan via WA/Telegram.</div>
+        <label>Alamat Lengkap <textarea id="cf-address" required placeholder="Jalan, Nomor Rumah, Kota/Kab, Kode Pos"></textarea></label>
+        
+        <h4>Metode Pembayaran</h4>
+        <select id="cf-payment" required>
+          <option value="">-- Pilih Metode --</option>
+          <option value="Transfer Bank BCA">Transfer Bank BCA</option>
+          <option value="Transfer Bank Mandiri">Transfer Bank Mandiri</option>
+        </select>
 
-        <div class="modal-actions">
+        <h4>Kirim Pesanan Via</h4>
+        <select id="cf-delivery" required>
+          <option value="">-- Pilih Platform --</option>
+          <option value="wa">WhatsApp</option>
+          <option value="telegram">Telegram</option>
+        </select>
+
+        <div class="modal-actions" style="border:none">
+          <button type="button" id="btn-copy-order" class="btn-outline">Salin Teks Pesanan</button>
           <button type="submit" class="btn-primary">Kirim Pesanan</button>
-          <button type="button" id="btn-copy-order" class="btn-ghost">Salin Teks</button>
         </div>
       </form>
     </div>
   </div>
 
-  <div id="modal-login" class="modal" aria-hidden="true" role="dialog" aria-labelledby="login-title">
+    <div class="modal" id="modal-login" aria-hidden="true">
     <div class="modal-card">
       <button class="modal-close" id="close-login-modal" aria-label="Close login">×</button>
       <h3 id="login-title">Masuk / Daftar</h3>
@@ -191,22 +169,31 @@
       </form>
     </div>
   </div>
-
-  <div class="floating">
+  
+    <div class="floating">
     <a href="https://wa.me/6287785981177" target="_blank" aria-label="WhatsApp" class="float-wa" title="Hubungi kami via WhatsApp">
-        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="WhatsApp Logo" loading="lazy">
+        <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="https://t.me/pawsfck" target="_blank" aria-label="Telegram" class="float-telegram" title="Hubungi kami via Telegram">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram Logo" loading="lazy">
+    <a href="https://t.me/pawsfck" target="_blank" aria-label="Telegram" class="float-telegram" title="Hubungi kami via Telegram">
+        <i class="fab fa-telegram-plane"></i>
     </a>
-    <a href="https://instagram.com/paws.fck" target="_blank" aria-label="Instagram" class="float-ig" title="Kunjungi Instagram kami">
-        <img src="https://cdn-icons-png.flaticon.com/512/3955/3955024.png" alt="Instagram Logo" loading="lazy">
+    <a href="https://instagram.com/pawsfck" target="_blank" aria-label="Instagram" class="float-ig" title="Ikuti kami di Instagram">
+        <i class="fab fa-instagram"></i>
     </a>
   </div>
+
+
+    <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="#" id="link-faq">FAQ</a>
+        <a href="#" id="link-terms">Syarat & Ketentuan</a>
+        <a href="#" id="link-contact">Kontak</a>
+      </div>
+      <small>PAWS Streetwear Collective &copy; <span id="year-copy">2025</span></small>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
