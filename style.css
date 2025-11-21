@@ -47,7 +47,7 @@ html,body{
 
 /* PERBAIKAN: Logo height yang disarankan */
 .logo-image {
-    height: 60px !important; 
+    height: 150px !important; 
     width: auto;
 }
 
@@ -437,3 +437,4 @@ input, textarea, select{
 .static-page-inner p {
     line-height: 1.6;
 }
+
