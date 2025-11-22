@@ -42,7 +42,7 @@ html,body{
   align-items:center;
 }
 .brand .logo-image{
-  height:60px; /* Diubah agar lebih proporsional di header */
+  height:60px; /* Ukuran yang lebih proporsional */
   width:auto;
 }
 .main-nav{display:flex;gap:10px;}
@@ -124,7 +124,7 @@ main{
     position: relative;
     max-width: var(--max-width);
     margin: 0 auto;
-    overflow: hidden; /* Penting untuk menyembunyikan banner yang tidak aktif */
+    overflow: hidden; 
     border-radius: var(--radius);
     margin-top: 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
@@ -137,15 +137,15 @@ main{
 }
 
 .hero-banner-item {
-    min-width: 100%; /* Setiap item menempati lebar penuh */
+    min-width: 100%; 
     flex-shrink: 0;
-    display: none; /* Sembunyikan semua item secara default oleh CSS */
+    display: none; 
     text-decoration: none;
     line-height: 0;
 }
 
 .hero-banner-item.active {
-    display: block; /* Hanya tampilkan item yang memiliki class 'active' */
+    display: block; 
 }
 
 .hero-banner-item img {
@@ -287,7 +287,7 @@ button:disabled{
   position:fixed;
   top:0;left:0;right:0;bottom:0;
   background:rgba(0,0,0,0.4);
-  display:none; /* Ditampilkan oleh JS */
+  display:none; 
   justify-content:center;
   align-items:center;
   z-index:1000;
@@ -384,7 +384,7 @@ button:disabled{
 /* Checkout Modal Specific */
 .checkout-note {
   font-size: 0.75rem;
-  color: #dc2626; /* Warna merah untuk peringatan */
+  color: #dc2626; 
   margin-top: 5px;
 }
 
@@ -412,26 +412,26 @@ button:disabled{
   font-size: 24px;
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Bayangan awal */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
 }
 
 /* 1. Warna Khusus */
 .float-wa {
-  background: #25d366; /* Warna Hijau WhatsApp solid */
+  background: #25d366; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .float-telegram {
-  background: #0088cc; /* Warna Biru Telegram solid */
+  background: #0088cc; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .float-ig{
-  background:#c13584; /* Warna Magenta Instagram solid */
+  background:#c13584; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
 }
 
-/* 2. Efek Hover (Tombol melayang + bayangan tebal) */
+/* 2. Efek Hover */
 .floating a:hover {
     transform: translateY(-2px); 
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25); 
@@ -529,6 +529,6 @@ button:disabled{
     margin: 0 8px;
   }
   .floating {
-    bottom: 80px; /* Pindahkan ke atas agar tidak tertutup tombol navigasi mobile */
+    bottom: 80px; 
   }
 }
