@@ -1,19 +1,19 @@
 /* =======================================================
-   PAWS — STYLE.CSS (Tema A: White–Green Modern Premium)
-   ======================================================= */
+  PAWS — STYLE.CSS (Tema A: White–Green Modern Premium)
+  ======================================================= */
 
 :root{
-  --bg: #ffffff;
-  --surface: #f8fefb;
-  --card: #ffffff;
-  --text: #0f1720;
-  --muted: #6b7280;
-  --accent: #0a7a53;        /* Hijau premium */
-  --accent-600: #086b46;
-  --radius: 12px;
-  --card-shadow: 0 10px 30px rgba(10,122,83,0.06);
-  --max-width: 1400px; /* Diubah dari 1240px menjadi 1400px (Lebih Lebar) */
-  --transition: 200ms ease;
+  --bg: #ffffff;
+  --surface: #f8fefb;
+  --card: #ffffff;
+  --text: #0f1720;
+  --muted: #6b7280;
+  --accent: #0a7a53;       /* Hijau premium */
+  --accent-600: #086b46;
+  --radius: 12px;
+  --card-shadow: 0 10px 30px rgba(10,122,83,0.06);
+  --max-width: 1400px; /* Diubah dari 1240px menjadi 1400px (Lebih Lebar) */
+  --transition: 200ms ease;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -25,8 +25,8 @@ html,body{
 }
 
 /* ==========================
-   Header
-   ========================== */
+  Header
+  ========================== */
 .site-header{
   position:sticky;top:0;z-index:999;
   background:rgba(255,255,255,0.85);
@@ -115,8 +115,8 @@ html,body{
 }
 
 /* ==========================
-   Utility Classes & Base
-   ========================== */
+  Utility Classes & Base
+  ========================== */
 .section{
   padding:20px;
 }
@@ -194,16 +194,16 @@ label textarea{
 }
 
 /* ==========================
-   Hero/Banner (Updated for Carousel & Size)
-   ========================== */
+  Hero/Banner (Updated for Carousel & Size)
+  ========================== */
 .hero-banner{
-  max-width:var(--max-width);
-  margin:20px auto 0;
-  /* PERUBAHAN UKURAN: aspect-ratio diubah dari 16 / 4 menjadi 16 / 5 (Lebih Tinggi) */
-  aspect-ratio: 16 / 5; 
-  border-radius:var(--radius);
-  overflow:hidden;
-  position:relative;
+  max-width:var(--max-width);
+  margin:20px auto 0;
+  /* PERUBAHAN UKURAN: aspect-ratio diubah dari 16 / 5 menjadi 16 / 6 (Lebih Tinggi) */
+  aspect-ratio: **16 / 6**; 
+  border-radius:var(--radius);
+  overflow:hidden;
+  position:relative;
 }
 .banner-container {
     /* Perbaikan: Mengubah ke block/relative agar item absolute bisa menumpuk di dalamnya */
@@ -253,8 +253,8 @@ label textarea{
 .banner-nav:hover { background: rgba(0, 0, 0, 0.6); }
 
 /* ==========================
-   Product Grid / Collection
-   ========================== */
+  Product Grid / Collection
+  ========================== */
 .collection-inner{
   max-width:var(--max-width);
   margin:0 auto;
@@ -323,8 +323,8 @@ label textarea{
 }
 
 /* ==========================
-   Modals
-   ========================== */
+  Modals
+  ========================== */
 .modal{
   position:fixed;
   top:0;left:0;right:0;bottom:0;
@@ -421,8 +421,8 @@ label textarea{
 
 
 /* ==========================
-   Floating Action Buttons
-   ========================== */
+  Floating Action Buttons
+  ========================== */
 .floating{
   position:fixed;
   bottom:20px;
@@ -461,8 +461,8 @@ label textarea{
 }
 
 /* ==========================
-   Footer
-   ========================== */
+  Footer
+  ========================== */
 .site-footer{
   margin-top:40px;
   border-top:1px solid #eaf5ef;
@@ -495,8 +495,8 @@ label textarea{
 }
 
 /* ==========================
-   Responsive adjustments
-   ========================== */
+  Responsive adjustments
+  ========================== */
 @media (max-width: 900px) {
   .header-inner {
     flex-wrap: wrap;
@@ -518,7 +518,8 @@ label textarea{
       order:1;
   }
   .hero-banner{
-      aspect-ratio: 16 / 9; /* Banner lebih tinggi di mobile */
+      /* PERUBAHAN UKURAN: aspect-ratio diubah dari 16 / 9 menjadi 16 / 10 (Lebih Tinggi) */
+      aspect-ratio: **16 / 10**; 
   }
 }
 
