@@ -27,10 +27,34 @@ const BANNERS = [
 /* ========== SAMPLE PRODUCTS (Default Data) ========== */
 // Produk awal ini hanya akan digunakan jika tidak ada data 'paws_products' di localStorage.
 const PRODUCTS = [
-  { id: "p1", name: "SKATEGRAFFITI WHITE", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/SKATEGRAFFITI%20WHITE.jpg?raw=true"], category: ["kaos","new-drop"], description: "Cotton Combed 30s. Regular Fit.", variants: { S: 10, M: 10, L: 10, XL: 10 } },
-  { id: "p2", name: "SKATEGRAFFITI BLACK", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/SKATEGRAFFITI%20BLACK.jpg?raw=true"], category: ["jaket","sale"], description: "Fleece 280gsm. Oversize Fit.", variants: { S: 10, M: 10, L: 10, XL: 10 } },
-  { id: "p3", name: "CLASSIC LOGO", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/CLASSIC%20LOGO.jpg?raw=true"], category: ["celana","new-drop"], description: "Twill premium. Slim tapered.", variants: { S: 10, M: 10, L: 10, XL: 10 } },
-  { id: "p4", name: "ARABIC LOGO", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/ARABIC%20LOGO.PNG?raw=true"], category: ["aksesoris","new-drop"], description: "Polyester drill. Adjustable strap.", variants: { S: 10, M: 10, L: 10, XL: 10 } } 
+  { id: "p1", name: "SKATEGRAFFITI WHITE", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/SKATEGRAFFITI%20WHITE.jpg?raw=true"], category: ["kaos","new-drop"], description: "SPESIFIKASI PRODUK :
+• Bahan Cotton Combed 20s 
+• Cutting Reguler Fit
+• Sablon Plastisol Full Collors 18 Warna
+• Detail Full Tag, RIB kerah 3.5cm
+• Warna Tersedia : Putih dan Hitam
+• Free 2 Stiker Eksklusif", variants: { S: 10, M: 10, L: 10, XL: 10 } },
+  { id: "p2", name: "SKATEGRAFFITI BLACK", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/SKATEGRAFFITI%20BLACK.jpg?raw=true"], category: ["kaos","sale"], description: "SPESIFIKASI PRODUK :
+• Bahan Cotton Combed 20s 
+• Cutting Reguler Fit
+• Sablon Plastisol Full Collors 18 Warna
+• Detail Full Tag, RIB kerah 3.5cm
+• Warna Tersedia : Putih dan Hitam
+• Free 2 Stiker Eksklusif", variants: { S: 10, M: 10, L: 10, XL: 10 } },
+  { id: "p3", name: "CLASSIC LOGO", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/CLASSIC%20LOGO.jpg?raw=true"], category: ["kaos","new-drop"], description: "SPESIFIKASI PRODUK :
+• Bahan Cotton Combed 20s 
+• Cutting Boxy Fit
+• Sablon Plastisol
+• Detail Full Tag, RIB kerah 3.5cm
+• Warna Tersedia : Hitam
+• Free 2 Stiker Eksklusif", variants: { S: 10, M: 10, L: 10, XL: 10 } },
+  { id: "p4", name: "ARABIC LOGO", price: 150000, images: ["https://github.com/Dragonwinnn1/PAWSofficial.co.id/blob/main/ARABIC%20LOGO.PNG?raw=true"], category: ["kaos","new-drop"], description: "SPESIFIKASI PRODUK :
+• Bahan Cotton Combed 20s 
+• Cutting Reguler Fit
+• Sablon Plastisol
+• Detail Full Tag, RIB kerah 3.5cm
+• Warna Tersedia : Hitam
+• Free 2 Stiker Eksklusif", variants: { S: 10, M: 10, L: 10, XL: 10 } } 
 ];
 
 /* ========== STATE ========== */
@@ -777,4 +801,5 @@ function boot(){
 }
 
 boot();
+
 
