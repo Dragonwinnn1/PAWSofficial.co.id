@@ -142,7 +142,7 @@ main{
     text-decoration: none;
     line-height: 0;
     /* FIX: Menggunakan tinggi tetap yang lebih stabil daripada rasio 7:2 */
-    height: 350px; 
+    height: 628px; 
     position: relative; 
 }
 
@@ -182,11 +182,11 @@ main{
 }
 
 .banner-nav.prev {
-    left: 15px;
+    left: 50px;
 }
 
 .banner-nav.next {
-    right: 15px;
+    right: 50px;
 }
 
 /* ==========================
@@ -677,3 +677,4 @@ button:disabled{
         flex-basis: calc(100% - 75px); 
     }
 }
+
