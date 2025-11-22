@@ -118,7 +118,7 @@ main{
 }
 
 /* ==========================
-   Hero Banner Carousel (RASIO BARU 7:2)
+   Hero Banner Carousel (PERBAIKAN RASIO)
    ========================== */
 .hero-banner {
     position: relative;
@@ -141,8 +141,8 @@ main{
     display: none; 
     text-decoration: none;
     line-height: 0;
-    /* RasiO 7:2 (3.5x lebih lebar dari tinggi) */
-    aspect-ratio: 7 / 2; 
+    /* FIX: Menggunakan tinggi tetap yang lebih stabil daripada rasio 7:2 */
+    height: 350px; 
     position: relative; 
 }
 
@@ -636,9 +636,12 @@ button:disabled{
     bottom: 80px; 
   }
   
-  /* Responsive Hero Banner (PERBAIKAN MARGIN MOBILE) */
+  /* Responsive Hero Banner (PERBAIKAN TINGGI MOBILE) */
   .hero-banner {
     margin: 15px 15px 0 15px; 
+  }
+  .hero-banner-item {
+    height: 200px; /* Tinggi yang lebih stabil untuk mobile */
   }
 
   /* Responsive Main/Section (PERBAIKAN PADDING MOBILE) */
