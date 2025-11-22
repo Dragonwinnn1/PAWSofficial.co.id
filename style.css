@@ -513,7 +513,7 @@ button:disabled{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 40px;
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
@@ -677,4 +677,5 @@ button:disabled{
         flex-basis: calc(100% - 75px); 
     }
 }
+
 
