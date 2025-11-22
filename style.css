@@ -97,18 +97,20 @@ html,body{
 .cart-btn:hover{background:var(--accent-600);}
 
 /* ==========================
-   Main Layout & Sections
+   Main Layout & Sections (PERBAIKAN PADDING DI SINI)
    ========================== */
 main{
   max-width:var(--max-width);
   margin:0 auto;
-  padding:0 20px;
+  /* Hapus padding agar hero-banner bisa punya margin sendiri */
+  padding:0; 
 }
 .section{
-  padding:20px 0;
+  /* Tambahkan padding di sini (untuk semua section kecuali hero) */
+  padding:20px; 
 }
 .collection-inner, .static-page-inner, .article-inner{
-  padding:20px 0;
+  padding:0; /* Padding sudah di section */
 }
 .collection-inner h2{
   font-size:2rem;
@@ -118,15 +120,15 @@ main{
 }
 
 /* ==========================
-   Hero Banner Carousel (Disesuaikan proporsinya)
+   Hero Banner Carousel (PERBAIKAN MARGIN DI SINI)
    ========================== */
 .hero-banner {
     position: relative;
     max-width: var(--max-width);
-    margin: 0 auto;
+    /* Tambahkan margin 20px di kiri dan kanan */
+    margin: 20px 20px 0 20px; 
     overflow: hidden; 
     border-radius: var(--radius);
-    margin-top: 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
@@ -142,7 +144,6 @@ main{
     display: none; 
     text-decoration: none;
     line-height: 0;
-    /* Kunci untuk proporsi banner 16:9 */
     aspect-ratio: 16 / 9; 
     position: relative; 
 }
@@ -153,8 +154,8 @@ main{
 
 .hero-banner-item img {
     width: 100%;
-    height: 100%; /* Isi tinggi penuh dari parent */
-    object-fit: cover; /* Pastikan gambar menutupi area tanpa terdistorsi */
+    height: 100%; 
+    object-fit: cover; 
     display: block;
     border-radius: var(--radius);
 }
@@ -371,7 +372,7 @@ button:disabled{
 }
 
 /* ==========================
-   Cart Item Styling (Diperbarui untuk tampilan rapi)
+   Cart Item Styling
    ========================== */
 .cart-item-row {
   display: flex;
@@ -636,6 +637,20 @@ button:disabled{
   .floating {
     bottom: 80px; 
   }
+  
+  /* Responsive Hero Banner (PERBAIKAN MARGIN MOBILE) */
+  .hero-banner {
+    margin: 15px 15px 0 15px; 
+  }
+
+  /* Responsive Main/Section (PERBAIKAN PADDING MOBILE) */
+  main{
+    padding: 0;
+  }
+  .section {
+    padding: 15px;
+  }
+  
   /* Responsive Cart Item */
     .cart-item-row {
         flex-wrap: wrap;
