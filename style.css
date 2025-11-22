@@ -97,20 +97,18 @@ html,body{
 .cart-btn:hover{background:var(--accent-600);}
 
 /* ==========================
-   Main Layout & Sections (PERBAIKAN PADDING DI SINI)
+   Main Layout & Sections
    ========================== */
 main{
   max-width:var(--max-width);
   margin:0 auto;
-  /* Hapus padding agar hero-banner bisa punya margin sendiri */
   padding:0; 
 }
 .section{
-  /* Tambahkan padding di sini (untuk semua section kecuali hero) */
   padding:20px; 
 }
 .collection-inner, .static-page-inner, .article-inner{
-  padding:0; /* Padding sudah di section */
+  padding:0; 
 }
 .collection-inner h2{
   font-size:2rem;
@@ -120,12 +118,11 @@ main{
 }
 
 /* ==========================
-   Hero Banner Carousel (PERBAIKAN MARGIN DI SINI)
+   Hero Banner Carousel (RASIO BARU 7:2)
    ========================== */
 .hero-banner {
     position: relative;
     max-width: var(--max-width);
-    /* Tambahkan margin 20px di kiri dan kanan */
     margin: 20px 20px 0 20px; 
     overflow: hidden; 
     border-radius: var(--radius);
@@ -144,7 +141,8 @@ main{
     display: none; 
     text-decoration: none;
     line-height: 0;
-    aspect-ratio: 16 / 9; 
+    /* RasiO 7:2 (3.5x lebih lebar dari tinggi) */
+    aspect-ratio: 7 / 2; 
     position: relative; 
 }
 
