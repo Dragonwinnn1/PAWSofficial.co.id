@@ -118,7 +118,7 @@ main{
 }
 
 /* ==========================
-   Hero Banner Carousel
+   Hero Banner Carousel (Disesuaikan proporsinya)
    ========================== */
 .hero-banner {
     position: relative;
@@ -142,6 +142,9 @@ main{
     display: none; 
     text-decoration: none;
     line-height: 0;
+    /* Kunci untuk proporsi banner 16:9 */
+    aspect-ratio: 16 / 9; 
+    position: relative; 
 }
 
 .hero-banner-item.active {
@@ -150,7 +153,8 @@ main{
 
 .hero-banner-item img {
     width: 100%;
-    height: auto;
+    height: 100%; /* Isi tinggi penuh dari parent */
+    object-fit: cover; /* Pastikan gambar menutupi area tanpa terdistorsi */
     display: block;
     border-radius: var(--radius);
 }
@@ -366,6 +370,107 @@ button:disabled{
   margin-top:5px;
 }
 
+/* ==========================
+   Cart Item Styling (Diperbarui untuk tampilan rapi)
+   ========================== */
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f3f4f6;
+  gap: 15px;
+}
+
+.cart-item-row:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0; 
+}
+
+.cart-item-info {
+  flex-grow: 1; 
+}
+
+.cart-item-info .title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.cart-item-info .details {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.cart-item-price {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent);
+  text-align: right;
+  flex-shrink: 0;
+  width: 100px; 
+}
+
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+/* Kuantitas Control */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  background: transparent;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.2s;
+  height: 30px;
+  line-height: 1;
+}
+
+.qty-btn:hover {
+  background: #f0f0f0;
+}
+
+.qty-display {
+  padding: 0 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  height: 30px;
+  line-height: 30px;
+}
+
+/* Tombol Hapus */
+.remove-cart-item {
+  background: transparent;
+  border: none;
+  color: #dc2626; 
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
 /* Wishlist Modal Specific */
 .wish-row{
   display:flex;
@@ -531,4 +636,28 @@ button:disabled{
   .floating {
     bottom: 80px; 
   }
+  /* Responsive Cart Item */
+    .cart-item-row {
+        flex-wrap: wrap;
+        padding: 10px 0;
+    }
+    .cart-item-image {
+        width: 50px;
+        height: 50px;
+    }
+    .cart-item-price {
+        order: 3;
+        width: auto;
+        margin-left: auto;
+        padding-top: 5px;
+    }
+    .cart-item-actions {
+        order: 4;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .cart-item-info {
+        flex-basis: calc(100% - 75px); 
+    }
 }
