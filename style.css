@@ -1,6 +1,6 @@
 /* =======================================================
-   PAWS — STYLE.CSS (Tema A: White–Green Modern Premium)
-   ======================================================= */
+   PAWS — STYLE.CSS (Tema A: White–Green Modern Premium)
+   ======================================================= */
 
 :root{
   --bg: #ffffff;
@@ -12,185 +12,185 @@
   --accent-600: #086b46;
   --radius: 12px;
   --card-shadow: 0 10px 30px rgba(10,122,83,0.06);
-  --max-width: 1400px; /* PERUBAHAN: Dibuat lebih lebar (1400px) */
+  --max-width: 1400px; /* Diubah dari 1240px menjadi 1400px (Lebih Lebar) */
   --transition: 200ms ease;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
 }
 
 /* ==========================
-   Header
-   ========================== */
+   Header
+   ========================== */
 .site-header{
-  position:sticky;top:0;z-index:999;
-  background:rgba(255,255,255,0.85);
-  backdrop-filter:blur(10px);
-  box-shadow:0 1px 15px rgba(0,0,0,0.05);
-  padding:12px 20px;
+  position:sticky;top:0;z-index:999;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 15px rgba(0,0,0,0.05);
+  padding:12px 20px;
 }
 .header-inner{
-  max-width:var(--max-width);
-  margin:0 auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
+  max-width:var(--max-width);
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
 }
 .brand{text-decoration:none}
 .logo-image{
-    height: 60px; 
-    width: auto;
-    display: block;
+    height: 60px; 
+    width: auto;
+    display: block;
 }
 .main-nav{display:flex;gap:10px;flex-grow:1;margin-left:20px;}
 .nav-btn{
-  background:transparent;
-  border:none;
-  color:var(--muted);
-  font-weight:600;
-  padding:8px 12px;
-  cursor:pointer;
-  transition:var(--transition);
-  font-size:15px;
-  border-radius:6px;
+  background:transparent;
+  border:none;
+  color:var(--muted);
+  font-weight:600;
+  padding:8px 12px;
+  cursor:pointer;
+  transition:var(--transition);
+  font-size:15px;
+  border-radius:6px;
 }
 .nav-btn:hover, .nav-btn.active{
-  color:var(--accent);
-  background:var(--surface);
+  color:var(--accent);
+  background:var(--surface);
 }
 
 .header-actions{
-  display:flex;
-  gap:15px;
-  align-items:center;
+  display:flex;
+  gap:15px;
+  align-items:center;
 }
 .icon-btn{
-  background:transparent;
-  border:none;
-  font-size:18px;
-  cursor:pointer;
-  position:relative;
-  color:var(--text);
-  padding:8px;
-  border-radius:50%;
-  transition:var(--transition);
+  background:transparent;
+  border:none;
+  font-size:18px;
+  cursor:pointer;
+  position:relative;
+  color:var(--text);
+  padding:8px;
+  border-radius:50%;
+  transition:var(--transition);
 }
 .icon-btn:hover{
-  background:var(--surface);
-  color:var(--accent);
+  background:var(--surface);
+  color:var(--accent);
 }
 .icon-btn i{
-  display:block;
+  display:block;
 }
 #wishlist-count{
-  position:absolute;
-  top:0px;right:-2px;
-  background:red;
-  color:white;
-  font-size:10px;
-  width:16px;height:16px;
-  line-height:16px;
-  text-align:center;
-  border-radius:50%;
-  font-weight:700;
+  position:absolute;
+  top:0px;right:-2px;
+  background:red;
+  color:white;
+  font-size:10px;
+  width:16px;height:16px;
+  line-height:16px;
+  text-align:center;
+  border-radius:50%;
+  font-weight:700;
 }
 .cart-btn{
-  background:var(--accent);
-  color:white;
-  border:none;
-  padding:10px 18px;
-  border-radius:6px;
-  font-weight:700;
-  cursor:pointer;
-  transition:var(--transition);
+  background:var(--accent);
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:6px;
+  font-weight:700;
+  cursor:pointer;
+  transition:var(--transition);
 }
 .cart-btn:hover{
-  background:var(--accent-600);
+  background:var(--accent-600);
 }
 
 /* ==========================
-   Utility Classes & Base
-   ========================== */
+   Utility Classes & Base
+   ========================== */
 .section{
-  padding:20px;
+  padding:20px;
 }
 .section h2{
-  font-size:2rem;
-  font-weight:800;
-  text-align:center;
-  margin-bottom:20px;
+  font-size:2rem;
+  font-weight:800;
+  text-align:center;
+  margin-bottom:20px;
 }
 .btn-primary, .btn-outline, .btn-ghost{
-  padding:10px 15px;
-  border-radius:6px;
-  font-weight:600;
-  cursor:pointer;
-  transition:var(--transition);
-  font-size:14px;
-  white-space:nowrap;
+  padding:10px 15px;
+  border-radius:6px;
+  font-weight:600;
+  cursor:pointer;
+  transition:var(--transition);
+  font-size:14px;
+  white-space:nowrap;
 }
 .btn-primary{
-  background:var(--accent);
-  color:white;
-  border:1px solid var(--accent);
+  background:var(--accent);
+  color:white;
+  border:1px solid var(--accent);
 }
 .btn-primary:hover{
-  background:var(--accent-600);
+  background:var(--accent-600);
 }
 .btn-outline{
-  background:transparent;
-  color:var(--accent);
-  border:1px solid var(--accent);
+  background:transparent;
+  color:var(--accent);
+  border:1px solid var(--accent);
 }
 .btn-outline:hover{
-  background:var(--surface);
+  background:var(--surface);
 }
 .btn-ghost{
-  background:transparent;
-  color:var(--muted);
-  border:1px solid transparent;
-  padding:10px 8px;
+  background:transparent;
+  color:var(--muted);
+  border:1px solid transparent;
+  padding:10px 8px;
 }
 .btn-ghost:hover{
-  color:var(--text);
-  background:var(--surface);
+  color:var(--text);
+  background:var(--surface);
 }
 button:disabled, button:disabled:hover{
-    cursor:not-allowed;
-    opacity:0.6;
-    background:var(--surface)!important;
-    color:var(--muted)!important;
-    border-color:var(--muted)!important;
+    cursor:not-allowed;
+    opacity:0.6;
+    background:var(--surface)!important;
+    color:var(--muted)!important;
+    border-color:var(--muted)!important;
 }
 
 /* Form Styles */
 label{
-  display:block;
-  margin-bottom:12px;
-  font-size:14px;
-  font-weight:600;
-  color:var(--text);
+  display:block;
+  margin-bottom:12px;
+  font-size:14px;
+  font-weight:600;
+  color:var(--text);
 }
 label input, label select, label textarea{
-  display:block;
-  width:100%;
-  padding:10px;
-  margin-top:5px;
-  border:1px solid #e5e7eb;
-  border-radius:6px;
-  font-family:inherit;
-  font-size:16px;
-  background:var(--surface);
+  display:block;
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  border:1px solid #e5e7eb;
+  border-radius:6px;
+  font-family:inherit;
+  font-size:16px;
+  background:var(--surface);
 }
 label textarea{
-    resize:vertical;
-    min-height:80px;
+    resize:vertical;
+    min-height:80px;
 }
 
 /* ==========================
@@ -199,338 +199,338 @@ label textarea{
 .hero-banner{
   max-width:var(--max-width);
   margin:20px auto 0;
-  /* PERUBAHAN UKURAN: aspect-ratio diubah menjadi 16/5 (lebih tinggi) */
+  /* PERUBAHAN UKURAN: aspect-ratio diubah dari 16 / 4 menjadi 16 / 5 (Lebih Tinggi) */
   aspect-ratio: 16 / 5; 
   border-radius:var(--radius);
   overflow:hidden;
   position:relative;
 }
 .banner-container {
-    /* Perbaikan: Mengubah ke block/relative agar item absolute bisa menumpuk di dalamnya */
-    display: block; 
-    position: relative;
-    width: 100%;
-    height: 100%; 
+    /* Perbaikan: Mengubah ke block/relative agar item absolute bisa menumpuk di dalamnya */
+    display: block; 
+    position: relative;
+    width: 100%;
+    height: 100%; 
 }
 .hero-banner-item {
-    /* PERBAIKAN: Menggunakan absolute untuk menumpuk gambar dan opacity untuk transisi */
-    position: absolute; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0; /* Semua tersembunyi secara default */
-    transition: opacity 500ms ease;
-    z-index: 1;
-    display: block;
+    /* PERBAIKAN: Menggunakan absolute untuk menumpuk gambar dan opacity untuk transisi */
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Semua tersembunyi secara default */
+    transition: opacity 500ms ease;
+    z-index: 1;
+    display: block;
 }
 .hero-banner-item.active {
-    opacity: 1; /* Hanya yang aktif yang terlihat */
-    z-index: 5;
+    opacity: 1; /* Hanya yang aktif yang terlihat */
+    z-index: 5;
 }
 .hero-banner-item img{
-  width:100%;
-  height:100%; 
-  object-fit:cover; 
-  display:block;
+  width:100%;
+  height:100%; 
+  object-fit:cover; 
+  display:block;
 }
 .banner-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 20px;
-    border-radius: 50%;
-    transition: background 300ms;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: background 300ms;
 }
 .banner-nav.prev { left: 15px; }
 .banner-nav.next { right: 15px; }
 .banner-nav:hover { background: rgba(0, 0, 0, 0.6); }
 
 /* ==========================
-   Product Grid / Collection
-   ========================== */
+   Product Grid / Collection
+   ========================== */
 .collection-inner{
-  max-width:var(--max-width);
-  margin:0 auto;
+  max-width:var(--max-width);
+  margin:0 auto;
 }
 .product-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
-  gap:25px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+  gap:25px;
 }
 .product-card{
-  background:var(--card);
-  border-radius:var(--radius);
-  box-shadow:var(--card-shadow);
-  overflow:hidden;
-  transition:transform 0.3s ease;
-  position:relative;
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--card-shadow);
+  overflow:hidden;
+  transition:transform 0.3s ease;
+  position:relative;
 }
 .product-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 15px 40px rgba(10,122,83,0.12);
+  transform:translateY(-3px);
+  box-shadow:0 15px 40px rgba(10,122,83,0.12);
 }
 .product-card img{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  display:block;
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
 }
 .product-meta{
-  padding:15px;
-  background:white;
+  padding:15px;
+  background:white;
 }
 .product-meta h3{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:4px;
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:4px;
 }
 .price{
-  font-size:18px;
-  font-weight:800;
-  color:var(--accent);
+  font-size:18px;
+  font-weight:800;
+  color:var(--accent);
 }
 .badge{
-  font-size:10px;
-  font-weight:700;
-  padding:3px 7px;
-  border-radius:4px;
-  background:var(--accent);
-  color:white;
-  text-transform:uppercase;
+  font-size:10px;
+  font-weight:700;
+  padding:3px 7px;
+  border-radius:4px;
+  background:var(--accent);
+  color:white;
+  text-transform:uppercase;
 }
 .product-actions{
-  display:flex;
-  gap:5px;
-  padding:0 15px 15px;
+  display:flex;
+  gap:5px;
+  padding:0 15px 15px;
 }
 .product-actions button{
-  flex-grow:1;
-  font-size:12px;
-  padding:8px 10px;
+  flex-grow:1;
+  font-size:12px;
+  padding:8px 10px;
 }
 .product-actions .btn-ghost{
-  flex-grow:0;
-  width:40px;
-  font-size:18px;
-  text-align:center;
+  flex-grow:0;
+  width:40px;
+  font-size:18px;
+  text-align:center;
 }
 
 /* ==========================
-   Modals
-   ========================== */
+   Modals
+   ========================== */
 .modal{
-  position:fixed;
-  top:0;left:0;right:0;bottom:0;
-  background:rgba(0,0,0,0.5);
-  z-index:10000;
-  display:none; /* Dikelola oleh JS */
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  overflow-y:auto;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,0.5);
+  z-index:10000;
+  display:none; /* Dikelola oleh JS */
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  overflow-y:auto;
 }
 .modal[aria-hidden="true"]{
-    display:none;
+    display:none;
 }
 .modal-card{
-  background:var(--card);
-  border-radius:var(--radius);
-  max-width:700px;
-  width:100%;
-  position:relative;
-  padding:20px;
-  box-shadow:0 15px 50px rgba(0,0,0,0.2);
-  margin:auto;
+  background:var(--card);
+  border-radius:var(--radius);
+  max-width:700px;
+  width:100%;
+  position:relative;
+  padding:20px;
+  box-shadow:0 15px 50px rgba(0,0,0,0.2);
+  margin:auto;
 }
 .modal-close{
-  position:absolute;
-  top:15px;right:15px;
-  background:transparent;
-  border:none;
-  font-size:24px;
-  color:var(--muted);
-  cursor:pointer;
-  z-index:10;
+  position:absolute;
+  top:15px;right:15px;
+  background:transparent;
+  border:none;
+  font-size:24px;
+  color:var(--muted);
+  cursor:pointer;
+  z-index:10;
 }
 .modal-content-inner{
-  max-height:60vh;
-  overflow-y:auto;
-  margin-bottom:20px;
-  padding-right:10px; 
+  max-height:60vh;
+  overflow-y:auto;
+  margin-bottom:20px;
+  padding-right:10px; 
 }
 .cart-summary{
-  background:var(--surface);
-  padding:15px;
-  border-radius:8px;
-  margin-top:10px;
+  background:var(--surface);
+  padding:15px;
+  border-radius:8px;
+  margin-top:10px;
 }
 .cart-summary div{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:5px;
-  font-size:15px;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:5px;
+  font-size:15px;
 }
 .cart-summary .cart-total{
-  font-weight:700;
-  font-size:18px;
-  border-top:1px dashed #ddd;
-  padding-top:8px;
-  margin-top:8px;
+  font-weight:700;
+  font-size:18px;
+  border-top:1px dashed #ddd;
+  padding-top:8px;
+  margin-top:8px;
 }
 .modal-actions{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
-    justify-content:flex-end;
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+    justify-content:flex-end;
 }
 .modal-actions button{
-    flex-grow:1;
+    flex-grow:1;
 }
 
 /* === Pop-up Banner Specific Styles === */
 #modal-popup .modal-card {
-    /* override general modal styles */
-    padding: 0;
-    max-width: 400px;
-    overflow: hidden;
+    /* override general modal styles */
+    padding: 0;
+    max-width: 400px;
+    overflow: hidden;
 }
 #modal-popup .modal-close {
-    top: 5px;
-    right: 5px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    color: var(--text);
-    padding: 0;
-    font-size: 20px;
+    top: 5px;
+    right: 5px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: var(--text);
+    padding: 0;
+    font-size: 20px;
 }
 #modal-popup .modal-card a {
-    display: block;
-    line-height: 0; 
+    display: block;
+    line-height: 0; 
 }
 
 
 /* ==========================
-   Floating Action Buttons
-   ========================== */
+   Floating Action Buttons
+   ========================== */
 .floating{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  z-index:900;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:900;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 .floating a{
-  display:block;
-  width:50px;
-  height:50px;
-  line-height:50px;
-  text-align:center;
-  color:white;
-  font-size:24px;
-  border-radius:50%;
-  transition:var(--transition);
+  display:block;
+  width:50px;
+  height:50px;
+  line-height:50px;
+  text-align:center;
+  color:white;
+  font-size:24px;
+  border-radius:50%;
+  transition:var(--transition);
 }
 .float-wa{
-  background:#25d366; 
-  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+  background:#25d366; 
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
 }
 .float-telegram{
-  background:#0088cc; 
-  box-shadow: 0 4px 10px rgba(0, 136, 204, 0.2);
+  background:#0088cc; 
+  box-shadow: 0 4px 10px rgba(0, 136, 204, 0.2);
 }
 .float-ig{
-  background:#c13584; 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  background:#c13584; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
 }
 .floating a:hover {
-    transform: translateY(-2px); 
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25); 
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25); 
 }
 
 /* ==========================
-   Footer
-   ========================== */
+   Footer
+   ========================== */
 .site-footer{
-  margin-top:40px;
-  border-top:1px solid #eaf5ef;
-  padding:28px 20px;
-  background:transparent;
+  margin-top:40px;
+  border-top:1px solid #eaf5ef;
+  padding:28px 20px;
+  background:transparent;
 }
 .footer-inner{
-  max-width:var(--max-width);
-  margin:0 auto;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
-  padding-bottom:12px;
+  max-width:var(--max-width);
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  padding-bottom:12px;
 }
 .site-footer small{
-  display:block;
-  text-align:center;
-  font-size:12px;
-  color:var(--muted);
+  display:block;
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
 }
 .footer-links a{
-  margin-left:15px;
-  color:var(--muted);
-  text-decoration:none;
-  font-size:14px;
+  margin-left:15px;
+  color:var(--muted);
+  text-decoration:none;
+  font-size:14px;
 }
 .footer-links a:hover{
-  color:var(--accent);
+  color:var(--accent);
 }
 
 /* ==========================
-   Responsive adjustments
-   ========================== */
+   Responsive adjustments
+   ========================== */
 @media (max-width: 900px) {
-  .header-inner {
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .main-nav {
-    order: 3;
-    flex-basis: 100%;
-    justify-content: center;
-    margin-left: 0;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--surface);
-  }
-  .header-actions{
-      order:2;
-  }
-  .brand {
-      order:1;
-  }
-  .hero-banner{
-      aspect-ratio: 4 / 3; /* PERUBAHAN: Banner lebih tinggi di mobile (4/3) */
-  }
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .main-nav {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--surface);
+  }
+  .header-actions{
+      order:2;
+  }
+  .brand {
+      order:1;
+  }
+  .hero-banner{
+      aspect-ratio: 16 / 9; /* Banner lebih tinggi di mobile */
+  }
 }
 
 @media (max-width: 500px) {
-  .product-grid{
-    grid-template-columns:1fr; /* Satu kolom di layar sangat kecil */
-  }
-  .header-actions{
-      gap:8px;
-  }
-  .cart-btn{
-      padding:8px 12px;
-      font-size:12px;
-  }
+  .product-grid{
+    grid-template-columns:1fr; /* Satu kolom di layar sangat kecil */
+  }
+  .header-actions{
+      gap:8px;
+  }
+  .cart-btn{
+      padding:8px 12px;
+      font-size:12px;
+  }
 }
